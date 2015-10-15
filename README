@@ -1,0 +1,9 @@
+A Proof Of Concept proving the best practice of orchestrating a CD with the trio SpringBoot-Gradle-Docker. Addition to
+running a docker-compose project for running and configure Jenkins as Docker container project propose also a
+dokerized provisioning of Jenkins jobs
+
+
+Structure:
+
+- simple springboot app > spring rest, spring persistence
+- gradle configured for >  lifecycle, docker integration
