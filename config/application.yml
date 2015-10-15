@@ -1,0 +1,57 @@
+spring:
+    profiles: dev
+send:
+   visitor: sergiu
+   message: welcome ${send.visitor}. This is how boot works!
+flyway:
+   user: root
+   driver: com.mysql.jdbc.Driver
+   url: jdbc:mysql://localhost:3306/TEST
+   baselineOnMigrate: true
+jpa:
+   bonecp:
+      driverClass: com.mysql.jdbc.Driver
+      maxConnectionsPerPartition: 20
+      minConnectionsPerPartition: 10
+      partitionCount: 3
+      acquireIncrement: 10
+      statementsCacheSize: 50
+      releaseHelperThreads: 3
+      acquireRetryAttempts: 0
+      acquireRetryDelayInMs: 1000
+      connectionTimeoutInMs: 3000
+      master:
+#      ENV variable - used for env setup [!!!pay attention > the ENV_NAME becomes ENV.NAME]
+#        jdbcUrl: jdbc:mysql://${MYSQL.HOST}:3306/TEST
+        jdbcUrl: jdbc:mysql://localhost:3306/TEST
+        jdbcUsername: root
+        jdbcPassword: ""
+
+---
+spring:
+    profiles: nondev
+send:
+   visitor: sergiu
+   message: welcome ${send.visitor}. This is how boot works!
+flyway:
+   user: root
+   password: password
+   driver: com.mysql.jdbc.Driver
+   url: jdbc:mysql://db:3306/TEST
+   baselineOnMigrate: true
+jpa:
+   bonecp:
+      driverClass: com.mysql.jdbc.Driver
+      maxConnectionsPerPartition: 20
+      minConnectionsPerPartition: 10
+      partitionCount: 3
+      acquireIncrement: 10
+      statementsCacheSize: 50
+      releaseHelperThreads: 3
+      acquireRetryAttempts: 0
+      acquireRetryDelayInMs: 1000
+      connectionTimeoutInMs: 3000
+      master:
+        jdbcUrl: jdbc:mysql://db:3306/TEST
+        jdbcUsername: root
+        jdbcPassword: "password"

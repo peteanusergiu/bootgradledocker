@@ -1,0 +1,62 @@
+buildscript {
+    ext {
+        springBootVersion = '1.2.6.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'maven'
+
+repositories {
+    mavenCentral()
+    maven { url "https://repository.jboss.org/nexus/content/repositories/releases" }
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+}
+
+jar {
+	baseName = 'experiment'
+	version = '0.1.0'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+	compile("org.springframework.boot:spring-boot-starter-web")
+	compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final")
+    compile("org.hibernate:hibernate-validator")
+    compile("mysql:mysql-connector-java")
+    //compile("org.springframework.boot:spring-boot-starter-jetty")
+    compile 'org.slf4j:slf4j-api:1.7.12'
+    compile 'com.jolbox:bonecp:0.8.0.RELEASE'
+    compile 'org.flywaydb:flyway-core'
+    compile "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final"
+    compile("com.h2database:h2")
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+
+    // Declare the dependency for your favourite test framework you want to use in your tests.
+    // TestNG is also supported by the Gradle Test task. Just change the
+    // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
+    // 'test.useTestNG()' to your build script.
+    testCompile 'junit:junit:4.12'
+}
+
+task showMeCache << {
+    configurations.compile.each { println it }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.7'
+}
