@@ -7,3 +7,5 @@ Structure:
 
 - simple springboot app > spring rest, spring persistence
 - gradle configured for >  lifecycle, docker integration
+- mysql integration
+- flyway integration > using this cool db migration tool to initialize db
