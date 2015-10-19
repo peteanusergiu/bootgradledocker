@@ -4,10 +4,7 @@ import org.experiment.util.EnvironmentUtils;
 import org.experiment.util.IConnectionsString;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
@@ -24,7 +21,21 @@ import java.util.Map;
  * Created by sepetean on 9/30/2015.
  */
 @Configuration
+//@Import({DataBaseMigratorConfig.class})
 public class EmbededDataSourceConfig {
+
+//    @Profile(EnvironmentUtils.DEV)
+//    @Bean(destroyMethod = "shutdown", initMethod = "start")
+//	@DependsOn(value="h2WebServer")
+//	public Server h2Server() throws Exception {
+//		return Server.createTcpServer("-tcpAllowOthers","-tcpPort","9097");
+//	}
+//
+//	@Profile(EnvironmentUtils.DEV)
+//	@Bean(destroyMethod = "shutdown", initMethod = "start")
+//	public Server h2WebServer() throws Exception {
+//		return Server.createWebServer("-webAllowOthers", "-webPort", "8087");
+//	}
 
     @Profile(EnvironmentUtils.DEV)
     @Bean(destroyMethod = "shutdown")
