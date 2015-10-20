@@ -16,10 +16,10 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
  */
 
 @Configuration
+@Profile(EnvironmentUtils.DEV_H2)
 public class DatabasePopulatorConfig {
 	
 	@Bean
-	@Profile(EnvironmentUtils.DEV)
 	public DatabasePopulator databasePopulator() {
 		ResourceDatabasePopulator resourceDatabasePopulator = new ResourceDatabasePopulator();
 		resourceDatabasePopulator.setSqlScriptEncoding("UTF-8");

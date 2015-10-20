@@ -1,10 +1,5 @@
 package org.experiment.db.config;
 
-/**
- * Created by sepetean on 9/30/2015.
- */
-
-
 import com.jolbox.bonecp.BoneCPDataSource;
 import org.experiment.prop.BoneCPProperties;
 import org.experiment.prop.JPAProperties;
@@ -30,9 +25,12 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Map;
 
+/**
+ * Created by sepetean on 10/19/2015.
+ */
 @Configuration
-@Profile(EnvironmentUtils.INTEGRATION)
-public class ReleaseDataSourceConfig {
+@Profile(EnvironmentUtils.DEV_MYSQL)
+public class EmbededMySQLDataSourceConfig {
 
     @Autowired
     private JPAProperties jpaConnectorProperties;
@@ -85,7 +83,6 @@ public class ReleaseDataSourceConfig {
     }
 
     @Bean(destroyMethod = "close")
-//	@DependsOn(value="h2Server")
     public DataSource dataSource() {
         BoneCPProperties boneCPProperties = jpaConnectorProperties.getBonecp();
         BoneCPDataSource dataSource = new BoneCPDataSource();
@@ -120,3 +117,4 @@ public class ReleaseDataSourceConfig {
         return new JdbcTemplate(dataSource());
     }
 }
+

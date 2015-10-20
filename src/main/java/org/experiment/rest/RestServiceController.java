@@ -1,5 +1,6 @@
 package org.experiment.rest;
 
+import org.experiment.db.repo.CustomerRepository;
 import org.experiment.lang.ProfileBean;
 import org.experiment.lang.RestResponse;
 import org.experiment.prop.RestProperties;
@@ -20,12 +21,17 @@ public class RestServiceController {
 	@Autowired
 	private RestProperties restProperties;
 
+	@Autowired
+	private CustomerRepository customerDB;
+
 	
 	@RequestMapping(value = "/visitor/{name}", 
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public RestResponse sayHello(@PathVariable("name") String name) {
-		return new RestResponse(restProperties.getMessage(), name);
+//		return new RestResponse(restProperties.getMessage(), name);
+		System.out.println(restProperties.getMessage());
+		return new RestResponse(String.format("You've sent %s. I'm returning %s", name, customerDB.findOne(1L)), name);
 	}
 
 }

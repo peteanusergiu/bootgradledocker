@@ -2,14 +2,15 @@ package org.experiment.prop;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-/**
- * Created by sepetean on 9/29/2015.
- */
 @ConfigurationProperties(prefix = "jpa")
 public class JPAProperties {
-    private BoneCPProperties bonecp = new BoneCPProperties();
+    private BoneCPProperties bonecp;
 
     public BoneCPProperties getBonecp() {
         return bonecp;
+    }
+
+    public void setBonecp(BoneCPProperties bonecp) {
+        this.bonecp = bonecp;
     }
 }

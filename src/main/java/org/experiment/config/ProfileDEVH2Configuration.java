@@ -7,12 +7,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 @Configuration
-public class ProfileDEVConfiguration {
+public class ProfileDEVH2Configuration {
 	
 	@Bean
-	@Profile(EnvironmentUtils.DEV)
+	@Profile(EnvironmentUtils.DEV_H2)
 	public ProfileBean activeProfile() {
-		return new ProfileBean(EnvironmentUtils.DEV);
+		return new ProfileBean(EnvironmentUtils.DEV_H2);
 	}
 
 }

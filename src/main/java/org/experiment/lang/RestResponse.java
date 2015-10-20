@@ -1,5 +1,7 @@
 package org.experiment.lang;
 
+import org.experiment.db.entities.Customer;
+
 public class RestResponse {
 	
 	private String message;
@@ -9,6 +11,16 @@ public class RestResponse {
 		this.message = String.format(message, name);
 		this.setName(name);
 	}
+
+	public RestResponse(Customer customer) {
+		this.message = customer.toString();
+		this.name = customer.getFirstName();
+	}
+
+	public RestResponse() {
+	}
+
+
 	public String getMessage() {
 		return message;
 	}

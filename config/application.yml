@@ -1,5 +1,5 @@
 spring:
-    profiles: dev
+    profiles: devh2
 send:
    visitor: sergiu
    message: welcome ${send.visitor}. This is how boot works!
@@ -13,7 +13,35 @@ flyway:
 
 ---
 spring:
-    profiles: nondev
+    profiles: devmysql
+send:
+   visitor: sergiu
+   message: welcome ${send.visitor}. This is how boot works!
+flyway:
+   user: root
+   password: ""
+   driver: com.mysql.jdbc.Driver
+   url: jdbc:mysql://localhost:3306/test
+   baselineOnMigrate: true
+jpa:
+   bonecp:
+      driverClass: com.mysql.jdbc.Driver
+      maxConnectionsPerPartition: 20
+      minConnectionsPerPartition: 10
+      partitionCount: 3
+      acquireIncrement: 10
+      statementsCacheSize: 50
+      releaseHelperThreads: 3
+      acquireRetryAttempts: 0
+      acquireRetryDelayInMs: 1000
+      connectionTimeoutInMs: 3000
+      master:
+        jdbcUrl: jdbc:mysql://localhost:3306/test
+        jdbcUsername: root
+        jdbcPassword: ""
+---
+spring:
+    profiles: integ
 send:
    visitor: sergiu
    message: welcome ${send.visitor}. This is how boot works!

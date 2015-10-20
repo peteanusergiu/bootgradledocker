@@ -9,9 +9,9 @@ public class BoneCPProperties {
     @NotNull
     private String driverClass = "com.mysql.jdbc.Driver";
     @NotNull
-    private Integer maxConnectionsPerPartition = 20;
+    private Integer maxConnectionsPerPartition = 2;
     @NotNull
-    private Integer minConnectionsPerPartition = 10;
+    private Integer minConnectionsPerPartition = 1;
     @NotNull
     private Integer partitionCount = 3;
     @NotNull
@@ -27,7 +27,7 @@ public class BoneCPProperties {
     @NotNull
     private Integer connectionTimeoutInMs = 3000;
     @NotNull
-    private BoneCPPropertiesENVConnection master = new BoneCPPropertiesMaster();
+    private BoneCPPropertiesMaster master = new BoneCPPropertiesMaster();
 
     public String getDriverClass() {
         return driverClass;
@@ -109,11 +109,11 @@ public class BoneCPProperties {
         this.connectionTimeoutInMs = connectionTimeoutInMs;
     }
 
-    public BoneCPPropertiesENVConnection getMaster() {
+    public BoneCPPropertiesMaster getMaster() {
         return master;
     }
 
-    public void setMaster(BoneCPPropertiesENVConnection master) {
+    public void setMaster(BoneCPPropertiesMaster master) {
         this.master = master;
     }
 

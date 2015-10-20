@@ -9,7 +9,8 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @EnableConfigurationProperties(RestProperties.class)
-@Import({ProfileDEVConfiguration.class, ProfileNONDEVConfiguration.class, ProfilePROTOTYPEConfiguration.class})
+//@EnableConfigurationProperties
+@Import({ProfileDEVH2Configuration.class, ProfileDEVMYSQLConfiguration.class, ProfilePROTOTYPEConfiguration.class})
 public class RestConfiguration {
 
 	@Bean

@@ -14,12 +14,12 @@ import org.springframework.test.web.servlet.ResultActions;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ActiveProfiles(EnvironmentUtils.PROTOTYPE)
+@ActiveProfiles(EnvironmentUtils.DEV_MYSQL)
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
-public class ProfilePROTOTYPEConfigurationTest extends AbstractRestServiceControllerTest {
-	
+public class DEVMYSQLProfileControllerTest extends AbstractRestServiceControllerTest {
+
 	@Test
 	public void testSayHelloActiveProfile() throws Exception{
 		String profileName = activeProfile.getProfileName();
@@ -28,5 +28,5 @@ public class ProfilePROTOTYPEConfigurationTest extends AbstractRestServiceContro
 		String contentAsString = andExpect.andReturn().getResponse().getContentAsString();
 		System.out.println(contentAsString);
 	}
-
+	
 }

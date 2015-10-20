@@ -14,19 +14,28 @@ import org.springframework.test.web.servlet.ResultActions;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ActiveProfiles(EnvironmentUtils.PROTOTYPE)
+@ActiveProfiles(EnvironmentUtils.DEV_H2)
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
-public class ProfilePROTOTYPEConfigurationTest extends AbstractRestServiceControllerTest {
-	
+public class DEVH2ProfileControllerTest extends AbstractRestServiceControllerTest {
+
+//	@Autowired
+//	private Flyway flyway;
+
 	@Test
 	public void testSayHelloActiveProfile() throws Exception{
 		String profileName = activeProfile.getProfileName();
 		System.out.println(profileName);
 		ResultActions andExpect = mvc.perform(get("/hello/world/visitor/" + profileName)).andExpect(status().is2xxSuccessful());
 		String contentAsString = andExpect.andReturn().getResponse().getContentAsString();
-		System.out.println(contentAsString);
-	}
 
+/*print migration info - testing the flyway result*/
+//		MigrationInfoService info = flyway.info();
+//		Arrays.stream(info.all()).forEach(s -> System.out.println(s.getScript()));
+
+		System.out.println(contentAsString);
+		
+	}
+	
 }
