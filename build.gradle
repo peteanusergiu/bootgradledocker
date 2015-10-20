@@ -58,6 +58,7 @@ compileJava.dependsOn(processResources)
 
 test {
     exclude 'org/experiment/profile/**'
+    systemProperties = System.properties
 }
 
 
