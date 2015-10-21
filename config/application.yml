@@ -3,6 +3,7 @@ spring:
 send:
    visitor: sergiu
    message: welcome ${send.visitor}. This is how boot works!
+   enumValue: FIRST_ENUM_VALUE
 flyway:
    user: sa
    paswword: ""

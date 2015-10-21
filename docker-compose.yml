@@ -3,16 +3,22 @@ app:
  volumes:
   - .:/app
  volumes_from:
-  - gradle_data
+  - gradledata
  working_dir: /app
  ports:
-  - "8080:8080"
+  - "8081:8081"
  links:
   - db
  environment:
-  SPRING_PROFILES_ACTIVE: nondev
+  SPRING_PROFILES_ACTIVE: integ
 db:
  image: mysql:5.6
  environment:
   MYSQL_ROOT_PASSWORD: password
   MYSQL_DATABASE: TEST
+gradledata:
+ image: ubuntu
+ volumes:
+ #.gradle
+  - "/root/.gradle"
+ command: echo Data for GRADLE
