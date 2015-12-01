@@ -1,7 +1,3 @@
-# ---------------------------------------------------------------------- #
-# Foreign key constraints                                                #
-# ---------------------------------------------------------------------- #
-
 USE northwind;
 
 ALTER TABLE `CustomerCustomerDemo` ADD CONSTRAINT `FK_CustomerCustomerDemo`
@@ -19,10 +15,10 @@ ALTER TABLE `EmployeeTerritories` ADD CONSTRAINT `FK_EmployeeTerritories_Employe
 ALTER TABLE `EmployeeTerritories` ADD CONSTRAINT `FK_EmployeeTerritories_Territories`
     FOREIGN KEY (`TerritoryID`) REFERENCES `Territories` (`TerritoryID`);
 
-ALTER TABLE `Order Details` ADD CONSTRAINT `FK_Order_Details_Orders`
+ALTER TABLE `OrderDetails` ADD CONSTRAINT `FK_Order_Details_Orders`
     FOREIGN KEY (`OrderID`) REFERENCES `Orders` (`OrderID`);
 
-ALTER TABLE `Order Details` ADD CONSTRAINT `FK_Order_Details_Products`
+ALTER TABLE `OrderDetails` ADD CONSTRAINT `FK_Order_Details_Products`
     FOREIGN KEY (`ProductID`) REFERENCES `Products` (`ProductID`);
 
 ALTER TABLE `Orders` ADD CONSTRAINT `FK_Orders_Customers`

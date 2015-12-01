@@ -20,7 +20,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class HelloWorldRestServiceControllerTest extends AbstractRestServiceControllerTest {
 	
 	@Test
-
 	public void testSayHello() throws Exception{
 		String profileName = activeProfile.getProfileName();
 		System.out.println(profileName);

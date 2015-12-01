@@ -3,3 +3,4 @@ CREATE TABLE Customer (
   firstname varchar(100),
   lastname varchar(100)
 );
+

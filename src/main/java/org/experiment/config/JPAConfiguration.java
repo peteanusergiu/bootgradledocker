@@ -3,7 +3,7 @@ package org.experiment.config;
 import org.experiment.db.config.EmbededH2DataSourceConfig;
 import org.experiment.db.config.EmbededMySQLDataSourceConfig;
 import org.experiment.db.config.ReleaseDataSourceConfig;
-import org.experiment.prop.BoneCPProperties;
+import org.experiment.prop.bonecp.BoneCPProperties;
 import org.experiment.prop.JPAProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;

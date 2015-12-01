@@ -1,7 +1,13 @@
 package org.experiment.extensions.annotation;
 
-/**
- * Created by petea on 11/27/2015.
- */
-public class Log {
-}
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
+@Retention(RUNTIME)
+@Target(FIELD)
+@Documented
+public @interface Log {}

@@ -1,5 +1,6 @@
 package org.experiment.prop;
 
+import org.experiment.prop.bonecp.BoneCPProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "jpa")
