@@ -1,5 +1,6 @@
-package org.experiment;
+package org.experiment.rest;
 
+import org.experiment.Application;
 import org.experiment.base.AbstractRestServiceControllerTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,9 +17,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
-public class RestServiceControllerTest extends AbstractRestServiceControllerTest {
+public class HelloWorldRestServiceControllerTest extends AbstractRestServiceControllerTest {
 	
 	@Test
+
 	public void testSayHello() throws Exception{
 		String profileName = activeProfile.getProfileName();
 		System.out.println(profileName);
@@ -27,5 +29,5 @@ public class RestServiceControllerTest extends AbstractRestServiceControllerTest
 
 		System.out.println(contentAsString);
 	}
-	
+
 }

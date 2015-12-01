@@ -4,7 +4,7 @@
 *spring will know to locate prototypeBean() and wrap it in a ObjectFactory
 
 * */
-package org.experiment.config;
+package org.experiment.config.profile;
 
 import org.experiment.lang.ProfileBean;
 import org.experiment.lang.PrototypeBean;

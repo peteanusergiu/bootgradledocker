@@ -1,7 +1,7 @@
 // Project:   Deutsche Telekom - SPICA
 // Author:    Josef Fuchshuber <josef.fuchshuber@qaware.de>
 // Copyright: QAware GmbH
-package org.experiment.util.annotation;
+package org.experiment.extensions.annotation;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -24,7 +24,8 @@ public @interface EnumOwner {
     /**
      * Returns the error message.
      */
-    String message() default "{de.telekom.spica.framework.lang.utils.enums}";
+    //see resources/ValidationMessages.properties
+    String message() default "{org.experiment.utils.annotation.enums}";
 
     /**
      * Returns the validation groups.

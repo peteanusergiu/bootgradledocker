@@ -1,4 +1,4 @@
-package org.experiment.prop;
+package org.experiment.prop.bonecp;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

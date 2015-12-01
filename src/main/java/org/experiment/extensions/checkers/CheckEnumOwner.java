@@ -1,8 +1,9 @@
 // Project:   Deutsche Telekom - SPICA
 // Author:    Josef Fuchshuber <josef.fuchshuber@qaware.de>
 // Copyright: QAware GmbH
-package org.experiment.util.annotation;
+package org.experiment.extensions.checkers;
 
+import org.experiment.extensions.annotation.EnumOwner;
 import org.springframework.util.StringUtils;
 
 import javax.validation.ConstraintValidator;
