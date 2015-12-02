@@ -1,12 +1,13 @@
 app:
  build: .
  volumes:
-  - .:/app
+#  - .:/app # . not working on windows - full path must be used
+  - /c/Users/petea/DockerWorkspace/spring-boot-prototype:/app
  volumes_from:
   - gradledata
  working_dir: /app
  ports:
-  - "8081:8081"
+  - "8082:8082"
  links:
   - db
  environment:
@@ -15,10 +16,9 @@ db:
  image: mysql:5.6
  environment:
   MYSQL_ROOT_PASSWORD: password
-  MYSQL_DATABASE: TEST
+  MYSQL_DATABASE: test
 gradledata:
  image: ubuntu
  volumes:
- #.gradle
-  - "/root/.gradle"
+  - "/root/.gradle/caches/"
  command: echo Data for GRADLE

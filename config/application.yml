@@ -1,5 +1,7 @@
 spring:
     profiles: devh2
+server:
+  port: 8082
 send:
    visitor: sergiu
    message: welcome ${send.visitor}. This is how boot works!
@@ -15,9 +17,12 @@ flyway:
 ---
 spring:
     profiles: devmysql
+server:
+  port: 8082
 send:
    visitor: sergiu
    message: welcome ${send.visitor}. This is how boot works!
+   enumValue: FIRST_ENUM_VALUE
 flyway:
    user: root
    password: ""
@@ -43,9 +48,12 @@ jpa:
 ---
 spring:
     profiles: integ
+server:
+  port: 8082
 send:
    visitor: sergiu
    message: welcome ${send.visitor}. This is how boot works!
+   enumValue: FIRST_ENUM_VALUE
 flyway:
    user: root
    password: password

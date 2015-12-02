@@ -3,6 +3,8 @@
 // Copyright: QAware GmbH
 package org.experiment.extensions.annotation;
 
+import org.experiment.extensions.checkers.CheckEnumOwner;
+
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.Documented;

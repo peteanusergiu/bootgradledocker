@@ -1,11 +1,31 @@
-A Proof Of Concept proving the best practice of orchestrating a CD with the trio SpringBoot-Gradle-Docker. Addition to
-running a docker-compose project for running and configure Jenkins as Docker container project propose also a
-dokerized provisioning of Jenkins jobs
+Proof Of Concept proving best practices of orchestrating a C(ontinuous)D(elivery) based on a SpringBoot-Gradle-Docker structure.
+
+Features:
+
+<Spring related>
+ - uses Spring framwework as core programming framework - Spring boot, Spring JPA, Spring REST, Spring Test
+ - proves a working scenario for working with spring profiles >
+         define multiple profiles in one file(see config/application.yml)
+         define, programmatically, the needed profile (see test/.../profile)
+         define a gradle task to work with a nedeed active profile (see -Dspring.profiles.active=devmysql)
+ - proves a working scenario for working with yml properties files (see prop package). Enum can be treated as well (see prop/RestProperties.enumValue)
+ - proves spring integration testing
 
 
-Structure:
+<Java related>
+ - JAVA 8 is the chosen language - use of lambda expressions and functional programming wherever is possible
+ - Propose structure - [config, db, lang, prop, rest, util] - most useful for a microservice structure
+ - Proves how a custom annotation can be defined and used as validator (see util/annotation)
 
-- simple springboot app > spring rest, spring persistence
-- gradle configured for >  lifecycle, docker integration
-- mysql integration
-- flyway integration > using this cool db migration tool to initialize db
+<Gradle related>
+ - Gradle 2.7 is used as the app. lifecycle tool. Groovy extension used whenever possible.
+
+<DB related>
+ - H2 memory is used for local tests
+ - MYSQL is used for INTEG tests.
+ - Flyway - migration tool - used for DB initialization
+
+<Docker related>
+ - structured as a docker-compose multi-project - running and configure Jenkins as Docker container [jenkins, data, plugins, db]
+ - Jenkins jobs run as docker processes - NEXT
+

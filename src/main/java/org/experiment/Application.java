@@ -1,9 +1,10 @@
 package org.experiment;
 
+import org.experiment.config.ExtensionConfig;
 import org.experiment.config.JPAConfiguration;
 import org.experiment.config.RestConfiguration;
+import org.experiment.extensions.annotation.Log;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -18,10 +19,11 @@ import org.springframework.web.servlet.DispatcherServlet;
 //@SpringBootApplication
 @Configuration
 @EnableAutoConfiguration(exclude = {DataSourceTransactionManagerAutoConfiguration.class, DataSourceAutoConfiguration.class})
-@Import({RestConfiguration.class, JPAConfiguration.class})
+@Import({RestConfiguration.class, JPAConfiguration.class, ExtensionConfig.class})
 public class Application {
 
-	private static final Logger log = LoggerFactory.getLogger(Application.class);
+	@Log
+	Logger log;
 
 	public static void main(String[] args) {
 		new SpringApplication(Application.class).run(args);

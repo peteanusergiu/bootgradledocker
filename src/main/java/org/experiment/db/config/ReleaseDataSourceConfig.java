@@ -6,7 +6,7 @@ package org.experiment.db.config;
 
 
 import com.jolbox.bonecp.BoneCPDataSource;
-import org.experiment.prop.BoneCPProperties;
+import org.experiment.prop.bonecp.BoneCPProperties;
 import org.experiment.prop.JPAProperties;
 import org.experiment.util.EnvironmentUtils;
 import org.experiment.util.IConnectionsString;
@@ -112,7 +112,7 @@ public class ReleaseDataSourceConfig {
     @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public SimpleJdbcInsert simpleJdbcInsert() {
-        return new SimpleJdbcInsert(jdbcTemplate()).withSchemaName(IConnectionsString.SCHEMA_NAME);
+        return new SimpleJdbcInsert(jdbcTemplate()).withSchemaName(IConnectionsString.SCHEMA_NAME_TEST);
     }
 
     @Bean

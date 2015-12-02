@@ -9,5 +9,5 @@ public interface IConnectionsString {
     String HIBERNATE_DIALECT_MY_SQL = "org.hibernate.dialect.MySQLDialect";
 
     String SCHEMA_NAME_FLYWAY_INIT = "public";
-    String SCHEMA_NAME = "TEST";
+    String SCHEMA_NAME_TEST = "TEST";
 }
