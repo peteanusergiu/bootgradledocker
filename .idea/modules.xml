@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/bootgradledocker.iml" filepath="$PROJECT_DIR$/bootgradledocker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../dockers/dockers.iml" filepath="$PROJECT_DIR$/../dockers/dockers.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../dockers/jenkins/jenkins.iml" filepath="$PROJECT_DIR$/../dockers/jenkins/jenkins.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-prototype.iml" filepath="$PROJECT_DIR$/spring-boot-prototype.iml" />
     </modules>
   </component>
 </project>
