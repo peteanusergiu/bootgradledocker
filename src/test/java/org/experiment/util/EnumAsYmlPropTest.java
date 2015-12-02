@@ -26,7 +26,7 @@ public class EnumAsYmlPropTest extends AbstractRestServiceControllerTest {
     @Test
     public void testMapAYmlProperty2Enum() throws Exception{
 
-        EnumAsYmlProp enumValue = restProperties.getEnumValue();
+        Properties enumValue = restProperties.getEnumValue();
         System.out.println(enumValue);
 
     }

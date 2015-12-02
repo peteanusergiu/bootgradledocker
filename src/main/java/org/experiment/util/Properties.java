@@ -5,7 +5,7 @@ package org.experiment.util;
 /**
  * Names of SPICA caches.
  */
-public enum EnumAsYmlProp {
+public enum Properties {
 
     /**
      * The name of the cache for the calendar DB master stickiness.

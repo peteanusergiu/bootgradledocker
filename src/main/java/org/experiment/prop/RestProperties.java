@@ -1,6 +1,6 @@
 package org.experiment.prop;
 
-import org.experiment.util.EnumAsYmlProp;
+import org.experiment.util.Properties;
 import org.experiment.extensions.annotation.EnumOwner;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -10,7 +10,7 @@ public class RestProperties {
 	private String message;
 
     /*validating the yml property to an enum of type enumType*/
-    @EnumOwner(enumType = EnumAsYmlProp.class)
+    @EnumOwner(enumType = Properties.class)
 	private String enumValue;
 	
 	public String getVisitor() {
@@ -26,8 +26,8 @@ public class RestProperties {
 		this.message = message;
 	}
 
-    public EnumAsYmlProp getEnumValue() {
-        return EnumAsYmlProp.valueOf(enumValue);
+    public Properties getEnumValue() {
+        return Properties.valueOf(enumValue);
     }
 
     public void setEnumValue(String enumValue) {
