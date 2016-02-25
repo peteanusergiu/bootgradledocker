@@ -2,7 +2,7 @@ package org.experiment.rest;
 
 import org.experiment.db.repo.CustomerRepository;
 import org.experiment.extensions.annotation.Log;
-import org.experiment.lang.RestResponse;
+import org.experiment.lang.xml.RestResponse;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

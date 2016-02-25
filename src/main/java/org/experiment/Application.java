@@ -18,7 +18,11 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 //@SpringBootApplication
 @Configuration
-@EnableAutoConfiguration(exclude = {DataSourceTransactionManagerAutoConfiguration.class, DataSourceAutoConfiguration.class})
+@EnableAutoConfiguration(exclude = {
+		DataSourceTransactionManagerAutoConfiguration.class,
+		DataSourceAutoConfiguration.class,
+//		HibernateJpaAutoConfiguration.class
+})
 @Import({RestConfiguration.class, JPAConfiguration.class, ExtensionConfig.class})
 public class Application {
 

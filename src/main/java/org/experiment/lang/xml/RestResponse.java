@@ -1,7 +1,10 @@
-package org.experiment.lang;
+package org.experiment.lang.xml;
 
 import org.experiment.db.entities.Customer;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class RestResponse {
 	
 	private String message;
