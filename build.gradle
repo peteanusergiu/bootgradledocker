@@ -8,6 +8,10 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        //documentation
+        classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.2'
+        classpath 'org.asciidoctor:asciidoctorj-pdf:1.5.0-alpha.8'
+        classpath 'io.github.robwin:swagger2markup-gradle-plugin:0.8.0'
     }
 }
 
@@ -15,6 +19,8 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
 apply plugin: 'maven'
+apply plugin: 'org.asciidoctor.convert'
+apply plugin: 'io.github.robwin.swagger2markup'
 
 repositories {
     mavenCentral()
@@ -43,12 +49,21 @@ dependencies {
     compile 'org.flywaydb:flyway-core'
     compile "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final"
     compile("com.h2database:h2")
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-joda")
+    compile "com.javaslang:javaslang:2.0.0-RC4"
+    compile 'commons-collections:commons-collections:3.0'
+    compile 'org.apache.commons:commons-lang3:3.4'
+    compile 'commons-lang:commons-lang:2.6'
 
-    compile "org.springframework.boot:spring-boot-configuration-processor"\
+    compile "org.springframework.boot:spring-boot-configuration-processor"
 
     compile("com.jayway.restassured:rest-assured:2.4.0")
 
+    //documentation
+    compile("io.swagger:swagger-annotations:1.5.0")
+
     testCompile("org.springframework.boot:spring-boot-starter-test")
+
 
     // Declare the dependency for your favourite test framework you want to use in your tests.
     // TestNG is also supported by the Gradle Test task. Just change the
