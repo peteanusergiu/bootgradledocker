@@ -5,7 +5,7 @@ import org.experiment.config.profile.ProfileDEVMYSQLConfiguration;
 import org.experiment.config.profile.ProfilePROTOTYPEConfiguration;
 import org.experiment.prop.RestProperties;
 import org.experiment.rest.DBRestServiceController;
-import org.experiment.rest.HelloWorldRestServiceController;
+import org.experiment.rest.IOTServiceController;
 import org.experiment.rest.JPARestServiceController;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -19,8 +19,8 @@ import org.springframework.context.annotation.Import;
 public class RestConfiguration {
 
 	@Bean
-	public HelloWorldRestServiceController helloWorldRestServiceController() {
-		return new HelloWorldRestServiceController();
+	public IOTServiceController helloWorldRestServiceController() {
+		return new IOTServiceController();
 	}
 
 	@Bean

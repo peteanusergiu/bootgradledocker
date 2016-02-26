@@ -14,7 +14,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 /**
  * Created by sepetean on 10/20/2015.
  */
-@ActiveProfiles(EnvironmentUtils.DEV_H2)
+@ActiveProfiles(EnvironmentUtilsLocal.DEV_H2)
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration

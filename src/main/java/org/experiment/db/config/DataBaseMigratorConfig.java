@@ -11,7 +11,7 @@ public class DataBaseMigratorConfig {
     private Flyway flyway;
 
     @Bean
-    @Profile(EnvironmentUtils.DEV)
+    @Profile(EnvironmentUtilsLocal.DEV)
     public void customizeFlyway(){
         flyway.setSchemas(IConnectionsString.SCHEMA_NAME_FLYWAY_INIT, IConnectionsString.SCHEMA_NAME);
     }

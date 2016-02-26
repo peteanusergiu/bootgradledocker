@@ -1,7 +1,7 @@
 package org.experiment.config.profile;
 
-import org.experiment.lang.ProfileBean;
-import org.experiment.util.EnvironmentUtils;
+import org.experiment.lang.json.ProfileBean;
+import org.experiment.util.EnvironmentUtilsLocal;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -12,8 +12,8 @@ public class ProfileDEVMYSQLConfiguration {
 	
 	@Bean
 	@Primary
-	@Profile(EnvironmentUtils.DEV_MYSQL)
+	@Profile(EnvironmentUtilsLocal.DEV_MYSQL)
 	public ProfileBean activeProfile() {
-		return new ProfileBean(EnvironmentUtils.DEV_MYSQL);
+		return new ProfileBean(EnvironmentUtilsLocal.DEV_MYSQL);
 	}
 }

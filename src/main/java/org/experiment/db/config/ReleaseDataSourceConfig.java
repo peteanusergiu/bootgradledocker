@@ -8,7 +8,7 @@ package org.experiment.db.config;
 import com.jolbox.bonecp.BoneCPDataSource;
 import org.experiment.prop.bonecp.BoneCPProperties;
 import org.experiment.prop.JPAProperties;
-import org.experiment.util.EnvironmentUtils;
+import org.experiment.util.EnvironmentUtilsLocal;
 import org.experiment.util.IConnectionsString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -31,7 +31,7 @@ import javax.sql.DataSource;
 import java.util.Map;
 
 @Configuration
-@Profile(EnvironmentUtils.INTEGRATION)
+@Profile(EnvironmentUtilsLocal.INTEGRATION)
 public class ReleaseDataSourceConfig {
 
     @Autowired

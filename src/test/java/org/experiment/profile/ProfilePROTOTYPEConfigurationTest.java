@@ -2,7 +2,7 @@ package org.experiment.profile;
 
 import org.experiment.Application;
 import org.experiment.base.AbstractRestServiceControllerTest;
-import org.experiment.util.EnvironmentUtils;
+import org.experiment.util.EnvironmentUtilsLocal;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -14,7 +14,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ActiveProfiles(EnvironmentUtils.PROTOTYPE)
+@ActiveProfiles(EnvironmentUtilsLocal.PROTOTYPE)
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration

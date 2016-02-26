@@ -1,6 +1,6 @@
 package org.experiment.db.config;
 
-import org.experiment.util.EnvironmentUtils;
+import org.experiment.util.EnvironmentUtilsLocal;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -16,7 +16,7 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
  */
 
 @Configuration
-@Profile(EnvironmentUtils.DEV_H2)
+@Profile(EnvironmentUtilsLocal.DEV_H2)
 public class DatabasePopulatorConfig {
 	
 	@Bean

@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Created by sepetean on 11/2/2015.
  */
     //use gradle task test -Dspring.profiles.active=devh2
-//@ActiveProfiles(EnvironmentUtils.DEV_H2)
+//@ActiveProfiles(EnvironmentUtilsLocal.DEV_H2)
     @RunWith(SpringJUnit4ClassRunner.class)
     @SpringApplicationConfiguration(classes = Application.class)
     @WebAppConfiguration

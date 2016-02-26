@@ -6,9 +6,9 @@
 * */
 package org.experiment.config.profile;
 
-import org.experiment.lang.ProfileBean;
-import org.experiment.lang.PrototypeBean;
-import org.experiment.util.EnvironmentUtils;
+import org.experiment.lang.json.ProfileBean;
+import org.experiment.lang.json.PrototypeBean;
+import org.experiment.util.EnvironmentUtilsLocal;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
@@ -20,13 +20,13 @@ public class ProfilePROTOTYPEConfiguration {
 	
 	@Bean
 	@Scope(org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-	@Profile(EnvironmentUtils.PROTOTYPE)
+	@Profile(EnvironmentUtilsLocal.PROTOTYPE)
 	public PrototypeBean prototypeBean(){
 		return new PrototypeBean("this is a prototype example!");
 	}
 	
 	@Bean
-	@Profile(EnvironmentUtils.PROTOTYPE)
+	@Profile(EnvironmentUtilsLocal.PROTOTYPE)
 	public ProfileBean activeProfile(ObjectFactory<PrototypeBean> prototypeFactory) {
 		return new ProfileBean(prototypeFactory.getObject().getProfileName());
 	}

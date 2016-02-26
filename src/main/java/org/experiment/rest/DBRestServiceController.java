@@ -1,6 +1,6 @@
 package org.experiment.rest;
 
-import org.experiment.lang.OrderDetails;
+import org.experiment.lang.json.OrderDetails;
 import org.experiment.lang.xml.RestResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

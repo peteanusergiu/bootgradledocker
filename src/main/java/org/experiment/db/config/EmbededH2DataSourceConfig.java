@@ -1,6 +1,6 @@
 package org.experiment.db.config;
 
-import org.experiment.util.EnvironmentUtils;
+import org.experiment.util.EnvironmentUtilsLocal;
 import org.experiment.util.IConnectionsString;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
@@ -24,7 +24,7 @@ import java.util.Map;
  * Created by sepetean on 9/30/2015.
  */
 @Configuration
-@Profile(EnvironmentUtils.DEV_H2)
+@Profile(EnvironmentUtilsLocal.DEV_H2)
 //@Import({DataBaseMigratorConfig.class})
 public class EmbededH2DataSourceConfig {
 

@@ -3,7 +3,7 @@ package org.experiment.db.config;
 import com.jolbox.bonecp.BoneCPDataSource;
 import org.experiment.prop.bonecp.BoneCPProperties;
 import org.experiment.prop.JPAProperties;
-import org.experiment.util.EnvironmentUtils;
+import org.experiment.util.EnvironmentUtilsLocal;
 import org.experiment.util.IConnectionsString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -29,7 +29,7 @@ import java.util.Map;
  * Created by sepetean on 10/19/2015.
  */
 @Configuration
-@Profile(EnvironmentUtils.DEV_MYSQL)
+@Profile(EnvironmentUtilsLocal.DEV_MYSQL)
 public class EmbededMySQLDataSourceConfig {
 
     @Autowired
