@@ -1,7 +1,7 @@
 package org.experiment.rest;
 
 import javaslang.control.Try;
-import org.apache.commons.logging.Log;
+import org.apache.log4j.Logger;
 import org.experiment.lang.generic.BaseResponse;
 import org.experiment.util.errormodel.ExceptionHandlerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +9,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 
 public class BaseController {
-    @Autowired
-    protected Log logger;
+
+    protected Logger logger;
 
     @Autowired
     protected Environment environment;

@@ -40,7 +40,6 @@ targetCompatibility = 1.8
 dependencies {
 	compile("org.springframework.boot:spring-boot-starter-web")
 	compile("org.springframework.boot:spring-boot-starter-data-jpa")
-    compile("org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final")
     compile("org.hibernate:hibernate-validator")
     compile("mysql:mysql-connector-java")
     //compile("org.springframework.boot:spring-boot-starter-jetty")
@@ -49,8 +48,11 @@ dependencies {
     compile 'org.flywaydb:flyway-core'
     compile "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final"
     compile("com.h2database:h2")
+
     compile("com.fasterxml.jackson.datatype:jackson-datatype-joda")
+
     compile "com.javaslang:javaslang:2.0.0-RC4"
+
     compile 'commons-collections:commons-collections:3.0'
     compile 'org.apache.commons:commons-lang3:3.4'
     compile 'commons-lang:commons-lang:2.6'

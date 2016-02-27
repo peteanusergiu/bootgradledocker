@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-//use gradle task test -Dspring.profiles.active=devh2l
+//use gradle task test -Dspring.profiles.active=devh2
 // and import
 //@ActiveProfiles(EnvironmentUtilsLocal.DEV_H2)
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -55,7 +55,7 @@ public class IOTServiceControllerTest extends AbstractRestServiceControllerTest 
         String profileName = activeProfile.getProfileName();
         System.out.println(profileName);
         ResultActions andExpect = mvc.perform(
-                post("/hello/soap/")
+                post("/hello/soap/iot")
                         .contentType(MediaType.APPLICATION_XML_VALUE)
                         .content(writeValueAsXMLString(createIOT()))
         ).andExpect(status().is2xxSuccessful());

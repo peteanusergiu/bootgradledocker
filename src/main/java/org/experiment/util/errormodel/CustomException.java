@@ -3,8 +3,8 @@ package org.experiment.util.errormodel;
 import org.experiment.util.ReturnCode;
 
 /**
- * This exception is used across SPICA to indicate unexpected error situations,
- * such as contract violations. SpicaExceptions are generally unrecoverable and
+ * This exception is used across PROJECT to indicate unexpected error situations,
+ * such as contract violations. CustomExceptions are generally unrecoverable and
  * indicate a programming error.
  *
  * @see CustomTrouble

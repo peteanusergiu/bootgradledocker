@@ -2,7 +2,7 @@ package org.experiment.rest;
 
 import org.experiment.db.repo.CustomerRepository;
 import org.experiment.extensions.annotation.Log;
-import org.experiment.lang.generic.CreateResponse;
+import org.experiment.lang.generic.IOTResponse;
 import org.experiment.lang.iot.IOT;
 import org.experiment.prop.RestProperties;
 import org.slf4j.Logger;
@@ -30,13 +30,14 @@ public class IOTServiceController extends BaseController{
     private CustomerRepository customerDB;
 
 
-    @RequestMapping(value = "/soap/create",
+    @RequestMapping(value = "/soap/iot",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_XML_VALUE,
             produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<CreateResponse> recordIOT(@Valid @RequestBody IOT iot) {
+    public ResponseEntity<IOTResponse> recordIOT(@Valid @RequestBody IOT iot) {
+        System.out.println("Processing a iot request!");
         return tryWithRecovery(() ->
-                new CreateResponse(iot.getMac(), "IOT creation result", "A detailed description of a IOT creation operation!"),
-                CreateResponse.class);
+                new IOTResponse("IOT-0000", iot.getMac(), "IOT creation result", "A detailed description of a IOT creation operation!"),
+                IOTResponse.class);
     }
 }
