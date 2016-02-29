@@ -1,6 +1,7 @@
 package org.experiment.rest;
 
-import org.experiment.db.repo.CustomerRepository;
+import org.experiment.db.entities.iot.IOTEntity;
+import org.experiment.db.repo.IOTRepository;
 import org.experiment.extensions.annotation.Log;
 import org.experiment.lang.generic.IOTResponse;
 import org.experiment.lang.iot.IOT;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.Calendar;
 
 @RestController
 @RequestMapping(value = "/hello")
@@ -27,7 +29,7 @@ public class IOTServiceController extends BaseController{
     private RestProperties restProperties;
 
     @Autowired
-    private CustomerRepository customerDB;
+    private IOTRepository iotDB;
 
 
     @RequestMapping(value = "/soap/iot",
@@ -36,6 +38,10 @@ public class IOTServiceController extends BaseController{
             produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<IOTResponse> recordIOT(@Valid @RequestBody IOT iot) {
         System.out.println("Processing a iot request!");
+        IOTEntity demo = new IOTEntity();
+        demo.setMac("mac"+ Calendar.getInstance().getTimeInMillis());
+        demo.setType("type"+ Calendar.getInstance().getTimeInMillis());
+        iotDB.save(demo);
         return tryWithRecovery(() ->
                 new IOTResponse("IOT-0000", iot.getMac(), "IOT creation result", "A detailed description of a IOT creation operation!"),
                 IOTResponse.class);

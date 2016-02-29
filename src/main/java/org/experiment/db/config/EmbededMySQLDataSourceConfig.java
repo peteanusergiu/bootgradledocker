@@ -1,14 +1,14 @@
 package org.experiment.db.config;
 
 import com.jolbox.bonecp.BoneCPDataSource;
-import org.experiment.prop.bonecp.BoneCPProperties;
 import org.experiment.prop.JPAProperties;
+import org.experiment.prop.bonecp.BoneCPProperties;
 import org.experiment.util.EnvironmentUtilsLocal;
 import org.experiment.util.IConnectionsString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.boot.autoconfigure.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
+import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -51,7 +51,7 @@ public class EmbededMySQLDataSourceConfig {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(
             EntityManagerFactoryBuilder factoryBuilder) {
-        return factoryBuilder.dataSource(dataSource()).packages("org.experiment.db.entities")
+        return factoryBuilder.dataSource(dataSource()).packages(IConnectionsString.PACKAGES)
                 .properties(hibernateJPAProperties()).build();
     }
 
@@ -63,7 +63,7 @@ public class EmbededMySQLDataSourceConfig {
         hibernateJPAProperties.setProperties(hibernateJPAProperties());
 
         EntityManagerFactoryBuilder builder = new EntityManagerFactoryBuilder(
-                jpaVendorAdapter, hibernateJPAProperties  , null);
+                jpaVendorAdapter, hibernateJPAProperties.getProperties()  , null);
         return builder;
     }
 

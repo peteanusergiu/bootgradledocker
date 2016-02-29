@@ -1,7 +1,7 @@
 package org.experiment.lang.xml;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.experiment.db.entities.Customer;
+import org.experiment.db.entities.test.CustomerEntity;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -20,7 +20,7 @@ public class RestResponse {
 		this.setName(name);
 	}
 
-	public RestResponse(Customer customer) {
+	public RestResponse(CustomerEntity customer) {
 		this.message = customer.toString();
 		this.name = customer.getFirstName();
 	}

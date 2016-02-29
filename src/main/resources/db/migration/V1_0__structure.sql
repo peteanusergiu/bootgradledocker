@@ -1,6 +1,37 @@
-CREATE TABLE Customer (
-  id INTEGER PRIMARY KEY,
-  firstname varchar(100),
-  lastname varchar(100)
+CREATE TABLE iot (
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  mac varchar(100),
+  type varchar(100),
+  beacon_id INTEGER
+);
+CREATE TABLE beacon (
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  uid_id INTEGER,
+  url_id INTEGER,
+  tlm_id INTEGER
+);
+CREATE TABLE uid (
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  uids VARCHAR(40) NOT NULL,
+  power VARCHAR(40) NOT NULL,
+  mfg_id VARCHAR(40) NOT NULL,
+  service_uuid VARCHAR(40) NOT NULL,
+  rssi VARCHAR(40) NOT NULL
+);
+CREATE TABLE url (
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  url VARCHAR(40) NOT NULL,
+  uids VARCHAR(40) NOT NULL,
+  power VARCHAR(40) NOT NULL,
+  mfg_id VARCHAR(40) NOT NULL,
+  service_uuid VARCHAR(40) NOT NULL,
+  rssi VARCHAR(40) NOT NULL
+);
+CREATE TABLE tlm (
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  seconds VARCHAR(40) NOT NULL,
+  voltage VARCHAR(40) NOT NULL,
+  temperature VARCHAR(40) NOT NULL,
+  pdus VARCHAR(40) NOT NULL
 );
 

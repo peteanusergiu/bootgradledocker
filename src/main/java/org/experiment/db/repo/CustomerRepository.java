@@ -1,14 +1,14 @@
 package org.experiment.db.repo;
 
-import org.experiment.db.entities.Customer;
+import org.experiment.db.entities.test.CustomerEntity;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface CustomerRepository extends CrudRepository<Customer, Long> {
+public interface CustomerRepository extends CrudRepository<CustomerEntity, Long> {
 
-        List<Customer> findByLastName(String lastName);
+        List<CustomerEntity> findByLastName(String lastName);
 
-        Customer findOne(Long id);
+        CustomerEntity findOne(Long id);
 
 }

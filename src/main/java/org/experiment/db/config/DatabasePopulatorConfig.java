@@ -10,9 +10,7 @@ import org.springframework.jdbc.datasource.init.DatabasePopulator;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
 /**
- * Project:   Deutsche Telekom - SPICA
  * Author:    Sergiu Petean
- * Copyright: Deutsche Telekom AG
  */
 
 @Configuration
