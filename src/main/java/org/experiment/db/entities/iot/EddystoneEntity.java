@@ -3,7 +3,8 @@ package org.experiment.db.entities.iot;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "beacon")
@@ -16,25 +17,26 @@ public class EddystoneEntity {
     protected Long id;
 
     @ApiModelProperty(value = "Eddystone's relation with IOT - Many2One; as an IOT(MAC) can have more beacons over time (same hardware but different info)")
-    @OneToOne(mappedBy = "beacon", optional = true)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "iot_id", unique = true, nullable = true)
     protected IOTEntity iot;
 
     @ApiModelProperty(value = "Eddystone's list of UIDs. It can take more values only if someone reconfigure an existing Beacon " +
             "without resetting the initial one!")
-    @OneToMany
-    @JoinColumn(name = "uid_id")
-    protected List<UIDEntity> uids;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "beacon_id")
+    protected Set<UIDEntity> uids = new HashSet<>();
 
     @ApiModelProperty(value = "Eddystone's list of TLMs. There should be at least one!")
-    @OneToMany
-    @JoinColumn(name = "tlm_id")
-    protected List<TLMEntity> tlms;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "beacon_id")
+    protected Set<TLMEntity> tlms = new HashSet<>();
 
     @ApiModelProperty(value = "Eddystone's list of URLs. It can take more values only if someone reconfigure an existing Beacon " +
             "without resetting the initial one!")
-    @OneToMany
-    @JoinColumn(name = "url_id")
-    protected List<URLEntity> urls;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "beacon_id")
+    protected Set<URLEntity> urls = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -52,27 +54,27 @@ public class EddystoneEntity {
         this.iot = iot;
     }
 
-    public List<UIDEntity> getUids() {
+    public Set<UIDEntity> getUids() {
         return uids;
     }
 
-    public void setUids(List<UIDEntity> uids) {
+    public void setUids(Set<UIDEntity> uids) {
         this.uids = uids;
     }
 
-    public List<TLMEntity> getTlms() {
+    public Set<TLMEntity> getTlms() {
         return tlms;
     }
 
-    public void setTlms(List<TLMEntity> tlms) {
+    public void setTlms(Set<TLMEntity> tlms) {
         this.tlms = tlms;
     }
 
-    public List<URLEntity> getUrls() {
+    public Set<URLEntity> getUrls() {
         return urls;
     }
 
-    public void setUrls(List<URLEntity> urls) {
+    public void setUrls(Set<URLEntity> urls) {
         this.urls = urls;
     }
 }

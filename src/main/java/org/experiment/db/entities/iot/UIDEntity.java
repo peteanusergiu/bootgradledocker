@@ -27,6 +27,20 @@ public class UIDEntity {
     protected String service_uuid;
     protected String rssi;
 
+    public UIDEntity() {
+    }
+
+    public UIDEntity(String id_namespace, String id_instance, String uids, String power, String mfg_id, String service_uuid, String rssi) {
+
+        this.id_namespace = id_namespace;
+        this.id_instance = id_instance;
+        this.uids = uids;
+        this.power = power;
+        this.mfg_id = mfg_id;
+        this.service_uuid = service_uuid;
+        this.rssi = rssi;
+    }
+
 
     public String getId_namespace() {
         return id_namespace;

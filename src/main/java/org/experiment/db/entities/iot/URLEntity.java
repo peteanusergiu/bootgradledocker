@@ -22,6 +22,20 @@ public class URLEntity {
     protected String power;
     protected String mfg_id;
     protected String service_uuid;
+
+    public URLEntity() {
+    }
+
+    public URLEntity(String url, String uids, String power, String mfg_id, String service_uuid, String rssi) {
+
+        this.url = url;
+        this.uids = uids;
+        this.power = power;
+        this.mfg_id = mfg_id;
+        this.service_uuid = service_uuid;
+        this.rssi = rssi;
+    }
+
     protected String rssi;
 
     public String getUrl() {

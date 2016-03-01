@@ -1,8 +1,8 @@
-ALTER TABLE `iot` ADD CONSTRAINT `FK_iot2beacon`
+ALTER TABLE `beacon` ADD CONSTRAINT `FK_beacon2iot`
+    FOREIGN KEY (`iot_id`) REFERENCES `iot` (`id`);
+ALTER TABLE `uid` ADD CONSTRAINT `FK_uid2beacon`
     FOREIGN KEY (`beacon_id`) REFERENCES `beacon` (`id`);
-ALTER TABLE `beacon` ADD CONSTRAINT `FK_beacon2uid`
-    FOREIGN KEY (`uid_id`) REFERENCES `uid` (`id`);
-ALTER TABLE `beacon` ADD CONSTRAINT `FK_beacon2url`
-    FOREIGN KEY (`url_id`) REFERENCES `url` (`id`);
-ALTER TABLE `beacon` ADD CONSTRAINT `FK_beacon2tlm`
-    FOREIGN KEY (`tlm_id`) REFERENCES `tlm` (`id`);
+ALTER TABLE `url` ADD CONSTRAINT `FK_url2beacon`
+    FOREIGN KEY (`beacon_id`) REFERENCES `beacon` (`id`);
+ALTER TABLE `tlm` ADD CONSTRAINT `FK_tlm2beacon`
+    FOREIGN KEY (`beacon_id`) REFERENCES `beacon` (`id`);

@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Import;
 public class RestConfiguration {
 
 	@Bean
-	public IOTServiceController helloWorldRestServiceController() {
+	public IOTServiceController iotRestServiceController() {
 		return new IOTServiceController();
 	}
 

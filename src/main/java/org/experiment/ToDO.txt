@@ -1,0 +1,11 @@
+Build each layer as a gradle subproject under the main Microservice prj
+...api
+...lang
+...rest/controller
+...service
+...connector(the db_operations and client for other microservice)?
+
+Raise up a nexus repo for dealing with all dependencies
+
+Externalize common function to core project and install it on nexus.
+

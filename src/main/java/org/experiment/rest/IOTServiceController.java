@@ -1,49 +1,49 @@
 package org.experiment.rest;
 
-import org.experiment.db.entities.iot.IOTEntity;
-import org.experiment.db.repo.IOTRepository;
 import org.experiment.extensions.annotation.Log;
 import org.experiment.lang.generic.IOTResponse;
 import org.experiment.lang.iot.IOT;
+import org.experiment.lang.xml.RestResponse;
 import org.experiment.prop.RestProperties;
+import org.experiment.service.IIOTService;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Calendar;
 
 @RestController
-@RequestMapping(value = "/hello")
+@RequestMapping
 public class IOTServiceController extends BaseController{
 
     @Log
     Logger log;
 
     @Autowired
-    private RestProperties restProperties;
+    private IIOTService iotService;
 
     @Autowired
-    private IOTRepository iotDB;
-
+    private RestProperties restProperties;
 
     @RequestMapping(value = "/soap/iot",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_XML_VALUE,
             produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<IOTResponse> recordIOT(@Valid @RequestBody IOT iot) {
-        System.out.println("Processing a iot request!");
-        IOTEntity demo = new IOTEntity();
-        demo.setMac("mac"+ Calendar.getInstance().getTimeInMillis());
-        demo.setType("type"+ Calendar.getInstance().getTimeInMillis());
-        iotDB.save(demo);
+        System.out.println("Received an iot request!");
+
         return tryWithRecovery(() ->
-                new IOTResponse("IOT-0000", iot.getMac(), "IOT creation result", "A detailed description of a IOT creation operation!"),
+                iotService.createUpdateIOT(iot),
                 IOTResponse.class);
+    }
+
+    @RequestMapping(value = "/isAlive/{name}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public RestResponse select(@PathVariable("name") String name) {
+        System.out.println("Service is alive!!");
+        return new RestResponse("I'm alive and kicking!!", name);
     }
 }

@@ -1,8 +1,8 @@
 package org.experiment;
 
 import org.experiment.config.ExtensionConfig;
-import org.experiment.config.JPAConfiguration;
 import org.experiment.config.RestConfiguration;
+import org.experiment.config.ServiceConfiguration;
 import org.experiment.extensions.annotation.Log;
 import org.slf4j.Logger;
 import org.springframework.boot.SpringApplication;
@@ -23,7 +23,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 		DataSourceAutoConfiguration.class,
 //		HibernateJpaAutoConfiguration.class
 })
-@Import({RestConfiguration.class, JPAConfiguration.class, ExtensionConfig.class})
+@Import({RestConfiguration.class, ServiceConfiguration.class, ExtensionConfig.class})
 public class Application {
 
 	@Log

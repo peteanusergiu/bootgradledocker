@@ -18,8 +18,7 @@ public class IOTEntity {
     private Long id;
 
     @ApiModelProperty(value = "The beacon's object <default, for now, to Eddystone.>")
-    @OneToOne(optional = true)
-    @JoinColumn(name = "beacon_id", unique = true, nullable = true)
+    @OneToOne(mappedBy = "iot", optional = false, cascade = CascadeType.ALL)
     private EddystoneEntity beacon;
 
     @ApiModelProperty(value = "The unique MAC for one IOT")
