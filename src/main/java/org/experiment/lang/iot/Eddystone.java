@@ -2,13 +2,10 @@ package org.experiment.lang.iot;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.annotations.ApiModelProperty;
-import org.experiment.util.builder.BuilderHelper;
-import org.springframework.util.CollectionUtils;
 
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.List;
 
 @XmlRootElement
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
@@ -18,21 +15,21 @@ public class Eddystone {
     @ApiModelProperty(value = "Eddystone's list of UIDs. It can take more values only if someone reconfigure an existing Beacon " +
             "without resetting the initial one!")
     @NotNull
-    private final List<UID> uids;
+    private final UIDS uids;
     @XmlElement
     @ApiModelProperty(value = "Eddystone's list of TLMs. There should be at least one!")
     @NotNull
-    private final List<TLM> tlms;
+    private final TLMS tlms;
     @XmlElement
     @ApiModelProperty(value = "Eddystone's list of URLs. It can take more values only if someone reconfigure an existing Beacon " +
             "without resetting the initial one!")
     @NotNull
-    private final List<URL> urls;
+    private final URLS urls;
 
-    public Eddystone(List<UID> uids, List<TLM> tlms, List<URL> urls) {
-        this.uids = (CollectionUtils.isEmpty(uids)) ? null : BuilderHelper.copyList(uids);
-        this.tlms = (CollectionUtils.isEmpty(tlms)) ? null : BuilderHelper.copyList(tlms);
-        this.urls = (CollectionUtils.isEmpty(urls)) ? null : BuilderHelper.copyList(urls);
+    public Eddystone(UIDS uids, TLMS tlms, URLS urls) {
+        this.tlms = tlms;
+        this.uids = uids;
+        this.urls = urls;
     }
 
     public Eddystone() {
@@ -41,17 +38,17 @@ public class Eddystone {
         this.urls = null;
     }
 
-    public List<URL> getUrls() {
+    public URLS getUrls() {
         return urls;
     }
 
 
-    public List<UID> getUids() {
+    public UIDS getUids() {
         return uids;
     }
 
 
-    public List<TLM> getTlms() {
+    public TLMS getTlms() {
         return tlms;
     }
 

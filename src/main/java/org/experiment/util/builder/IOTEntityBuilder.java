@@ -19,22 +19,24 @@ public class IOTEntityBuilder {
         iotEntity.setType(iot.getType());
 
         EddystoneEntity beacon = new EddystoneEntity();
-        if (!CollectionUtils.isEmpty( iot.getBeacon().getTlms() ) ) {
-            Set<TLMEntity> entitiesTLM = iot.getBeacon().getTlms().stream().
+        if (!CollectionUtils.isEmpty( iot.getBeacon().getTlms().getTlmList() ) ) {
+            Set<TLMEntity> entitiesTLM = iot.getBeacon().getTlms().getTlmList().stream().
                     map(tlm -> new TLMEntity(
                             tlm.getSeconds(),
                             tlm.getVoltage(),
-                            tlm.getTemperature(),
+                            tlm.getTemp(),
                             tlm.getPdus())).collect(Collectors.toSet());
             beacon.setTlms(entitiesTLM);
         }
-        if (!CollectionUtils.isEmpty( iot.getBeacon().getUids() ) ) {
-            Set<UIDEntity> uids = iot.getBeacon().getUids().stream().
+        if (!CollectionUtils.isEmpty( iot.getBeacon().getUids().getUidList() ) ) {
+            Set<UIDEntity> uids = iot.getBeacon().getUids().getUidList().stream().
                     map(uid -> new UIDEntity(
                             uid.getId_namespace(),
                             uid.getId_instance(),
-                            uid.getUids(),
-                            uid.getUids(),
+                            uid.getMinor(),
+                            uid.getMajor(),
+                            uid.getUuid(),
+                            uid.getUuid(),
                             uid.getPower(),
                             uid.getMfg_id(),
                             uid.getRssi()))
@@ -42,12 +44,12 @@ public class IOTEntityBuilder {
             beacon.setUids(uids);
         }
 
-        if (!CollectionUtils.isEmpty( iot.getBeacon().getUrls() ) ) {
-            Set<URLEntity> urls = iot.getBeacon().getUrls().stream().
+        if (!CollectionUtils.isEmpty( iot.getBeacon().getUrls().getUrlList() ) ) {
+            Set<URLEntity> urls = iot.getBeacon().getUrls().getUrlList().stream().
                     map(url -> new URLEntity(
-                            url.getUrl(),
-                            url.getUids(),
-                            url.getUids(),
+                            url.getUri(),
+                            url.getIds(),
+                            url.getIds(),
                             url.getPower(),
                             url.getMfg_id(),
                             url.getRssi()))

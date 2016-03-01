@@ -12,13 +12,13 @@ import javax.xml.bind.annotation.*;
 @ApiModel(description = "Eddystone's URL frame")
 public class URL {
     @XmlElement
-    @ApiModelProperty(value = "The beacon's url")
+    @ApiModelProperty(value = "The beacon's uri")
     @NotNull
-    private final String url;
+    private final String uri;
     @ApiModelProperty(value = "")
     @XmlElement
     @NotNull
-    private final String uids;
+    private final String ids;
     @ApiModelProperty(value = "")
     @XmlElement
     @NotNull
@@ -33,8 +33,8 @@ public class URL {
     private final String rssi;
 
     public URL(String url, String uids, String power, String mfg_id, String service_uuid, String rssi) {
-        this.url = url;
-        this.uids = uids;
+        this.uri = url;
+        this.ids = uids;
         this.power = power;
         this.mfg_id = mfg_id;
         this.service_uuid = service_uuid;
@@ -42,20 +42,20 @@ public class URL {
     }
 
     public URL() {
-        this.url = null;
-        this.uids = null;
+        this.uri = null;
+        this.ids = null;
         this.power = null;
         this.mfg_id = null;
         this.service_uuid = null;
         this.rssi = null;
     }
 
-    public String getUrl() {
-        return url;
+    public String getUri() {
+        return uri;
     }
 
-    public String getUids() {
-        return uids;
+    public String getIds() {
+        return ids;
     }
 
     public String getPower() {

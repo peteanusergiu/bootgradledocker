@@ -16,14 +16,13 @@ public class TLMEntity {
     private Long id;
 
     @ApiModelProperty(value = "The beacon's eddystone voltage")
-    protected String seconds;
-
+    private String seconds;
 
     @ApiModelProperty(value = "The beacon's eddystone voltage")
     private String voltage;
 
-    @ApiModelProperty(value = "The beacon's eddystone temperature")
-    private String temperature;
+    @ApiModelProperty(value = "The beacon's eddystone temp")
+    private String temp;
 
     @ApiModelProperty(value = "The beacon's eddystone pdus")
     private String pdus;
@@ -35,7 +34,7 @@ public class TLMEntity {
 
         this.seconds = seconds;
         this.voltage = voltage;
-        this.temperature = temperature;
+        this.temp = temperature;
         this.pdus = pdus;
     }
 
@@ -55,12 +54,12 @@ public class TLMEntity {
         this.voltage = voltage;
     }
 
-    public String getTemperature() {
-        return temperature;
+    public String getTemp() {
+        return temp;
     }
 
-    public void setTemperature(String temperature) {
-        this.temperature = temperature;
+    public void setTemp(String temp) {
+        this.temp = temp;
     }
 
     public String getPdus() {

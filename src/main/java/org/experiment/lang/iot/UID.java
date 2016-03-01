@@ -12,20 +12,24 @@ import javax.xml.bind.annotation.*;
 @ApiModel(description = "Eddystone's UID frame")
 public class UID {
 
-    public UID(String id_namespace, String id_instance, String uids, String power, String mfg_id, String service_uuid, String rssi) {
+    public UID(String id_namespace, String id_instance, String minor, String major, String uids, String power, String mfg_id, String service_uuid, String rssi) {
         this.id_namespace = id_namespace;
         this.id_instance = id_instance;
-        this.uids = null;
-        this.power = null;
-        this.mfg_id = null;
-        this.service_uuid = null;
-        this.rssi = null;
+        this.minor = minor;
+        this.major = major;
+        this.uuid = uids;
+        this.power = power;
+        this.mfg_id = mfg_id;
+        this.service_uuid = service_uuid;
+        this.rssi = rssi;
     }
 
     public UID() {
         this.id_namespace = null;
         this.id_instance = null;
-        this.uids = null;
+        this.minor = null;
+        this.major = null;
+        this.uuid = null;
         this.power = null;
         this.mfg_id = null;
         this.service_uuid = null;
@@ -42,10 +46,18 @@ public class UID {
     @NotNull
     private final String id_instance;
 
+    @XmlElement
+    @ApiModelProperty(value = "The beacon's eddystone minor")
+    private final String minor;
+
+    @XmlElement
+    @ApiModelProperty(value = "The beacon's eddystone major")
+    private final String major;
+
     @ApiModelProperty(value = "")
     @XmlElement
     @NotNull
-    private final String uids;
+    private final String uuid;
     @ApiModelProperty(value = "")
     @XmlElement
     @NotNull
@@ -67,8 +79,8 @@ public class UID {
         return id_instance;
     }
 
-    public String getUids() {
-        return uids;
+    public String getUuid() {
+        return uuid;
     }
 
     public String getPower() {
@@ -85,5 +97,13 @@ public class UID {
 
     public String getRssi() {
         return rssi;
+    }
+
+    public String getMinor() {
+        return minor;
+    }
+
+    public String getMajor() {
+        return major;
     }
 }

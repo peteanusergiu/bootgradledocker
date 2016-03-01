@@ -31,13 +31,27 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class IOTServiceControllerTest extends AbstractRestServiceControllerTest {
 
     @Test
-    public void testPersistIOT() throws Exception {
+    public void testPersistIOTFull() throws Exception {
         String profileName = activeProfile.getProfileName();
         System.out.println(profileName);
         ResultActions andExpect = mvc.perform(
                 post("/soap/iot")
                         .contentType(MediaType.APPLICATION_XML_VALUE)
-                        .content(writeValueAsXMLString(createIOT()))
+                        .content(writeValueAsXMLString(createIOTFull()))
+        ).andExpect(status().is2xxSuccessful());
+
+        String contentAsString = andExpect.andReturn().getResponse().getContentAsString();
+
+        System.out.println(contentAsString);
+    }
+    @Test
+    public void testPersistIOTTLMS() throws Exception {
+        String profileName = activeProfile.getProfileName();
+        System.out.println(profileName);
+        ResultActions andExpect = mvc.perform(
+                post("/soap/iot")
+                        .contentType(MediaType.APPLICATION_XML_VALUE)
+                        .content(writeValueAsXMLString(createIOTTLMS()))
         ).andExpect(status().is2xxSuccessful());
 
         String contentAsString = andExpect.andReturn().getResponse().getContentAsString();
@@ -45,13 +59,29 @@ public class IOTServiceControllerTest extends AbstractRestServiceControllerTest 
         System.out.println(contentAsString);
     }
 
-    private IOT createIOT() {
+    private IOT createIOTFull() {
         List<TLM> tlms = new ArrayList<>();
         tlms.add(new TLM("voltage", "temp", "pdus", "seconds"));
         tlms.add(new TLM("voltage2", "temp2", "pdus2", "seconds2"));
-        List<URL> urls = new ArrayList<>();
-        List<UID> uids = new ArrayList<>();
-        Eddystone beacon = new Eddystone(uids, tlms, urls);
+        TLMS tlmsList = new TLMS(tlms);
+        List<UID> uidsList = new ArrayList<>();
+        uidsList.add(new UID("id_namespace", "id_instance", "1", "2", "3", "4", "5", "6", "7"));
+        UIDS uids = new UIDS(uidsList);
+        List<URL> urlList = new ArrayList<>();
+        urlList.add(new URL("url", "2", "3", "4", "5", "6"));
+        URLS urls = new URLS(urlList);
+        Eddystone beacon = new Eddystone(uids, tlmsList, urls);
+        return new IOT(beacon, "test:Mac", "eddy");
+    }
+
+    private IOT createIOTTLMS() {
+        List<TLM> tlms = new ArrayList<>();
+        tlms.add(new TLM("voltage", "temp", "pdus", "seconds"));
+        tlms.add(new TLM("voltage2", "temp2", "pdus2", "seconds2"));
+        TLMS tlmsList = new TLMS(tlms);
+        UIDS uids = new UIDS();
+        URLS urls = new URLS();
+        Eddystone beacon = new Eddystone(uids, tlmsList, urls);
         return new IOT(beacon, "test:Mac", "eddy");
     }
 

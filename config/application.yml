@@ -9,9 +9,9 @@ send:
 flyway:
    user: sa
    paswword: ""
-   url: jdbc:h2:mem:testdb;TRACE_LEVEL_SYSTEM_OUT=1
-#   url: jdbc:h2:mem:testdb;AUTO_RECONNECT=TRUE;DATABASE_TO_UPPER=true;INIT=create schema if not exists public;TRACE_LEVEL_SYSTEM_OUT=1
-#   url: jdbc:h2:file:///d:/Development/H2DB/db3;TRACE_LEVEL_SYSTEM_OUT=1
+   uri: jdbc:h2:mem:testdb;TRACE_LEVEL_SYSTEM_OUT=1
+#   uri: jdbc:h2:mem:testdb;AUTO_RECONNECT=TRUE;DATABASE_TO_UPPER=true;INIT=create schema if not exists public;TRACE_LEVEL_SYSTEM_OUT=1
+#   uri: jdbc:h2:file:///d:/Development/H2DB/db3;TRACE_LEVEL_SYSTEM_OUT=1
    baselineOnMigrate: true
 
 ---
@@ -27,7 +27,7 @@ flyway:
    user: root
    password: ""
    driver: com.mysql.jdbc.Driver
-   url: jdbc:mysql://localhost:3306/physicalweb
+   uri: jdbc:mysql://localhost:3306/physicalweb
    baselineOnMigrate: true
 jpa:
    bonecp:
@@ -58,7 +58,7 @@ flyway:
    user: root
    password: password
    driver: com.mysql.jdbc.Driver
-   url: jdbc:mysql://db:3306/test
+   uri: jdbc:mysql://db:3306/test
    baselineOnMigrate: true
 jpa:
    bonecp:

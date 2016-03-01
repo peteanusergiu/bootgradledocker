@@ -1,53 +1,45 @@
 package org.experiment.db.entities.iot;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
 import javax.persistence.*;
 
-@ApiModel(description = "Eddystone's URL frame")
 @Entity
 @Table(name = "url")
 public class URLEntity {
 
-    @ApiModelProperty(value = "The entity's unique id")
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
-    @ApiModelProperty(value = "The beacon's url")
-    protected String url;
-
-    protected String uids;
-    protected String power;
-    protected String mfg_id;
-    protected String service_uuid;
+    private String uri;
+    private String ids;
+    private String power;
+    private String mfg_id;
+    private String service_uuid;
+    private String rssi;
 
     public URLEntity() {
     }
 
-    public URLEntity(String url, String uids, String power, String mfg_id, String service_uuid, String rssi) {
+    public URLEntity(String url, String ids, String power, String mfg_id, String service_uuid, String rssi) {
 
-        this.url = url;
-        this.uids = uids;
+        this.uri = url;
+        this.ids = ids;
         this.power = power;
         this.mfg_id = mfg_id;
         this.service_uuid = service_uuid;
         this.rssi = rssi;
     }
 
-    protected String rssi;
-
-    public String getUrl() {
-        return url;
+    public String getUri() {
+        return uri;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setUri(String uri) {
+        this.uri = uri;
     }
 
-    public void setUids(String uids) {
-        this.uids = uids;
+    public void setIds(String ids) {
+        this.ids = ids;
     }
 
     public void setPower(String power) {
@@ -66,8 +58,8 @@ public class URLEntity {
         this.rssi = rssi;
     }
 
-    public String getUids() {
-        return uids;
+    public String getIds() {
+        return ids;
     }
 
     public String getPower() {

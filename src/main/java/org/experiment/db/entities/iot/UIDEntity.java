@@ -16,25 +16,30 @@ public class UIDEntity {
     private Long id;
 
     @ApiModelProperty(value = "The beacon's eddystone namespace id")
-    protected String id_namespace;
+    private String id_namespace;
 
     @ApiModelProperty(value = "The beacon's eddystone namespace instance")
-    protected String id_instance;
+    private String id_instance;
 
-    protected String uids;
-    protected String power;
-    protected String mfg_id;
-    protected String service_uuid;
-    protected String rssi;
+    private String minor;
+    private String major;
+
+    private String uuid;
+    private String power;
+    private String mfg_id;
+    private String service_uuid;
+    private String rssi;
 
     public UIDEntity() {
     }
 
-    public UIDEntity(String id_namespace, String id_instance, String uids, String power, String mfg_id, String service_uuid, String rssi) {
+    public UIDEntity(String id_namespace, String id_instance, String minor, String major, String uids, String power, String mfg_id, String service_uuid, String rssi) {
 
         this.id_namespace = id_namespace;
         this.id_instance = id_instance;
-        this.uids = uids;
+        this.minor = minor;
+        this.major = major;
+        this.uuid = uids;
         this.power = power;
         this.mfg_id = mfg_id;
         this.service_uuid = service_uuid;
@@ -58,8 +63,8 @@ public class UIDEntity {
         this.id_instance = id_instance;
     }
 
-    public void setUids(String uids) {
-        this.uids = uids;
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     public void setPower(String power) {
@@ -78,8 +83,8 @@ public class UIDEntity {
         this.rssi = rssi;
     }
 
-    public String getUids() {
-        return uids;
+    public String getUuid() {
+        return uuid;
     }
 
     public String getPower() {
@@ -98,4 +103,19 @@ public class UIDEntity {
         return rssi;
     }
 
+    public String getMinor() {
+        return minor;
+    }
+
+    public void setMinor(String minor) {
+        this.minor = minor;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
 }

@@ -14,29 +14,29 @@ public class EddystoneEntity {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id")
-    protected Long id;
+    private Long id;
 
     @ApiModelProperty(value = "Eddystone's relation with IOT - Many2One; as an IOT(MAC) can have more beacons over time (same hardware but different info)")
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "iot_id", unique = true, nullable = true)
-    protected IOTEntity iot;
+    private IOTEntity iot;
 
     @ApiModelProperty(value = "Eddystone's list of UIDs. It can take more values only if someone reconfigure an existing Beacon " +
             "without resetting the initial one!")
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "beacon_id")
-    protected Set<UIDEntity> uids = new HashSet<>();
+    @JoinColumn(name = "beacon_id", nullable = true)
+    private Set<UIDEntity> uids = new HashSet<>();
 
     @ApiModelProperty(value = "Eddystone's list of TLMs. There should be at least one!")
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "beacon_id")
-    protected Set<TLMEntity> tlms = new HashSet<>();
+    @JoinColumn(name = "beacon_id" , nullable = true)
+    private Set<TLMEntity> tlms = new HashSet<>();
 
     @ApiModelProperty(value = "Eddystone's list of URLs. It can take more values only if someone reconfigure an existing Beacon " +
             "without resetting the initial one!")
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "beacon_id")
-    protected Set<URLEntity> urls = new HashSet<>();
+    @JoinColumn(name = "beacon_id", nullable = true)
+    private Set<URLEntity> urls = new HashSet<>();
 
     public Long getId() {
         return id;

@@ -14,14 +14,14 @@ public class TLM {
 
     public TLM(String voltage, String temperature, String pdus, String seconds) {
         this.voltage = voltage;
-        this.temperature = temperature;
+        this.temp = temperature;
         this.pdus = pdus;
         this.seconds = seconds;
     }
 
     public TLM() {
         this.voltage = null;
-        this.temperature = null;
+        this.temp = null;
         this.pdus = null;
         this.seconds = null;
     }
@@ -32,9 +32,9 @@ public class TLM {
     private final String voltage;
 
     @XmlElement
-    @ApiModelProperty(value = "The beacon's eddystone temperature")
+    @ApiModelProperty(value = "The beacon's eddystone temp")
     @NotNull
-    private final String temperature;
+    private final String temp;
 
     @XmlElement
     @ApiModelProperty(value = "The beacon's eddystone pdus")
@@ -55,8 +55,8 @@ public class TLM {
     }
 
 
-    public String getTemperature() {
-        return temperature;
+    public String getTemp() {
+        return temp;
     }
 
     public String getPdus() {
