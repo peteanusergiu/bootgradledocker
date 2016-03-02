@@ -33,13 +33,13 @@ public class UIDEntity {
     public UIDEntity() {
     }
 
-    public UIDEntity(String id_namespace, String id_instance, String minor, String major, String uids, String power, String mfg_id, String service_uuid, String rssi) {
+    public UIDEntity(String id_namespace, String id_instance, String minor, String major, String uuid, String power, String mfg_id, String service_uuid, String rssi) {
 
         this.id_namespace = id_namespace;
         this.id_instance = id_instance;
         this.minor = minor;
         this.major = major;
-        this.uuid = uids;
+        this.uuid = uuid;
         this.power = power;
         this.mfg_id = mfg_id;
         this.service_uuid = service_uuid;

@@ -48,8 +48,8 @@ public class IOTEntityBuilder {
             Set<URLEntity> urls = iot.getBeacon().getUrls().getUrlList().stream().
                     map(url -> new URLEntity(
                             url.getUri(),
-                            url.getIds(),
-                            url.getIds(),
+                            url.getUuid(),
+                            url.getUuid(),
                             url.getPower(),
                             url.getMfg_id(),
                             url.getRssi()))

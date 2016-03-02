@@ -13,7 +13,7 @@ CREATE TABLE uid (
   id_instance VARCHAR(40),
   minor VARCHAR(40),
   major VARCHAR(40),
-  uids VARCHAR(40) ,
+  uuid VARCHAR(40) ,
   power VARCHAR(40),
   mfg_id VARCHAR(40) ,
   service_uuid VARCHAR(40) ,
@@ -23,7 +23,7 @@ CREATE TABLE uid (
 CREATE TABLE url (
   id INTEGER PRIMARY KEY AUTO_INCREMENT,
   uri VARCHAR(40),
-  uuid VARCHAR(40) ,
+  ids VARCHAR(40) ,
   power VARCHAR(40),
   mfg_id VARCHAR(40) ,
   service_uuid VARCHAR(40) ,

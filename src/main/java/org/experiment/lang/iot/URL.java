@@ -18,7 +18,7 @@ public class URL {
     @ApiModelProperty(value = "")
     @XmlElement
     @NotNull
-    private final String ids;
+    private final String uuid;
     @ApiModelProperty(value = "")
     @XmlElement
     @NotNull
@@ -34,7 +34,7 @@ public class URL {
 
     public URL(String url, String uids, String power, String mfg_id, String service_uuid, String rssi) {
         this.uri = url;
-        this.ids = uids;
+        this.uuid = uids;
         this.power = power;
         this.mfg_id = mfg_id;
         this.service_uuid = service_uuid;
@@ -43,7 +43,7 @@ public class URL {
 
     public URL() {
         this.uri = null;
-        this.ids = null;
+        this.uuid = null;
         this.power = null;
         this.mfg_id = null;
         this.service_uuid = null;
@@ -54,8 +54,8 @@ public class URL {
         return uri;
     }
 
-    public String getIds() {
-        return ids;
+    public String getUuid() {
+        return uuid;
     }
 
     public String getPower() {
