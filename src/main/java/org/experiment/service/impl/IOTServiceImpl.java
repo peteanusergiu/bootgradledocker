@@ -1,5 +1,6 @@
 package org.experiment.service.impl;
 
+import org.experiment.db.entities.iot.IOTEntity;
 import org.experiment.db.repo.IOTRepository;
 import org.experiment.lang.generic.IOTResponse;
 import org.experiment.lang.iot.IOT;
@@ -18,7 +19,15 @@ public class IOTServiceImpl implements IIOTService{
     @Override
     public IOTResponse createUpdateIOT(IOT iot) {
         System.out.println("Serving an iot request!");
-        iotDB.save(IOTEntityBuilder.buildIOTEntity(iot));
+
+        IOTEntity existingOne = iotDB.findOne(iot.getMac());
+        if (existingOne != null) {
+            IOTEntityBuilder.updateExisting(existingOne, iot);
+            iotDB.saveAndFlush(existingOne);
+        } else {
+            iotDB.save(IOTEntityBuilder.buildIOTEntity(iot));
+        }
+
         return new IOTResponse("IOT-0000", iot.getMac(), "IOT creation result", "A detailed description of a IOT creation operation!");
     }
 }

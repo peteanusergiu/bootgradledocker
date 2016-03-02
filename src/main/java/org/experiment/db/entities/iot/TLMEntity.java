@@ -10,11 +10,7 @@ import javax.persistence.*;
 @Table(name = "tlm")
 public class TLMEntity {
 
-    @ApiModelProperty(value = "The beacon's unique id")
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
-
     @ApiModelProperty(value = "The beacon's eddystone voltage")
     private String seconds;
 
@@ -31,7 +27,6 @@ public class TLMEntity {
     }
 
     public TLMEntity(String seconds, String voltage, String temperature, String pdus) {
-
         this.seconds = seconds;
         this.voltage = voltage;
         this.temp = temperature;
@@ -68,5 +63,21 @@ public class TLMEntity {
 
     public void setPdus(String pdus) {
         this.pdus = pdus;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        return (
+                (object != null)
+                        &&
+                        (object instanceof TLMEntity)
+                        &&
+                        (this.seconds.equals(((TLMEntity) object).getSeconds()))
+        );
+    }
+
+    @Override
+    public int hashCode() {
+        return seconds.hashCode();
     }
 }

@@ -12,29 +12,17 @@ import javax.persistence.*;
 @Table(name = "iot")
 public class IOTEntity {
 
-    @ApiModelProperty(value = "The beacon's unique id")
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+    @ApiModelProperty(value = "The unique MAC for one IOT. PK key as well")
+    private String mac;
 
     @ApiModelProperty(value = "The beacon's object <default, for now, to Eddystone.>")
-    @OneToOne(mappedBy = "iot", optional = false, cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @PrimaryKeyJoinColumn
     private EddystoneEntity beacon;
-
-    @ApiModelProperty(value = "The unique MAC for one IOT")
-    private String mac;
 
     @ApiModelProperty(value = "The beacon's type <default, for now, to eddystone.>")
     private String type;
-
-    public Long getId() {
-        return id;
-    }
-
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getMac() {
         return mac;
@@ -58,6 +46,22 @@ public class IOTEntity {
 
     public void setBeacon(EddystoneEntity beacon) {
         this.beacon = beacon;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        return (
+                (object != null)
+                        &&
+                        (object instanceof IOTEntity)
+                        &&
+                        (this.mac.equals(((IOTEntity) object).getMac()))
+        );
+    }
+
+    @Override
+    public int hashCode() {
+        return mac.hashCode();
     }
 }
 

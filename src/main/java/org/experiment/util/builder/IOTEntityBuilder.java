@@ -48,8 +48,8 @@ public class IOTEntityBuilder {
             Set<URLEntity> urls = iot.getBeacon().getUrls().getUrlList().stream().
                     map(url -> new URLEntity(
                             url.getUri(),
-                            url.getUuid(),
-                            url.getUuid(),
+                            url.getIds(),
+                            url.getIds(),
                             url.getPower(),
                             url.getMfg_id(),
                             url.getRssi()))
@@ -60,5 +60,12 @@ public class IOTEntityBuilder {
         iotEntity.setBeacon(beacon);
         beacon.setIot(iotEntity);
         return iotEntity;
+    }
+
+    public static void updateExisting(IOTEntity existingOne, IOT iot) {
+        IOTEntity tempIOTEntity = IOTEntityBuilder.buildIOTEntity(iot);
+        existingOne.getBeacon().getTlms().addAll(tempIOTEntity.getBeacon().getTlms());
+        existingOne.getBeacon().getUrls().addAll(tempIOTEntity.getBeacon().getUrls());
+        existingOne.getBeacon().getUids().addAll(tempIOTEntity.getBeacon().getUids());
     }
 }

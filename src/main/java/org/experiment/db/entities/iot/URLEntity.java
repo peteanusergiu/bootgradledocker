@@ -7,11 +7,9 @@ import javax.persistence.*;
 public class URLEntity {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
+    private String ids;
 
     private String uri;
-    private String ids;
     private String power;
     private String mfg_id;
     private String service_uuid;
@@ -30,6 +28,14 @@ public class URLEntity {
         this.rssi = rssi;
     }
 
+    public String getIds() {
+        return ids;
+    }
+
+    public void setIds(String ids) {
+        this.ids = ids;
+    }
+
     public String getUri() {
         return uri;
     }
@@ -38,45 +44,51 @@ public class URLEntity {
         this.uri = uri;
     }
 
-    public void setIds(String ids) {
-        this.ids = ids;
+    public String getPower() {
+        return power;
     }
 
     public void setPower(String power) {
         this.power = power;
     }
 
-    public void setMfg_id(String mfg_id) {
-        this.mfg_id = mfg_id;
-    }
-
-    public void setService_uuid(String service_uuid) {
-        this.service_uuid = service_uuid;
-    }
-
-    public void setRssi(String rssi) {
-        this.rssi = rssi;
-    }
-
-    public String getIds() {
-        return ids;
-    }
-
-    public String getPower() {
-        return power;
-    }
-
     public String getMfg_id() {
         return mfg_id;
+    }
+
+    public void setMfg_id(String mfg_id) {
+        this.mfg_id = mfg_id;
     }
 
     public String getService_uuid() {
         return service_uuid;
     }
 
+    public void setService_uuid(String service_uuid) {
+        this.service_uuid = service_uuid;
+    }
+
     public String getRssi() {
         return rssi;
     }
 
+    public void setRssi(String rssi) {
+        this.rssi = rssi;
+    }
 
+    @Override
+    public boolean equals(Object object) {
+        return (
+                (object != null)
+                        &&
+                        (object instanceof URLEntity)
+                        &&
+                        (this.ids.equals(((URLEntity) object).getIds()))
+        );
+    }
+
+    @Override
+    public int hashCode() {
+        return ids.hashCode();
+    }
 }

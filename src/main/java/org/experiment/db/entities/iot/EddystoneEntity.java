@@ -12,39 +12,31 @@ public class EddystoneEntity {
 
     @ApiModelProperty(value = "Eddystone's unique id")
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id")
-    private Long id;
+    private String id;
 
     @ApiModelProperty(value = "Eddystone's relation with IOT - Many2One; as an IOT(MAC) can have more beacons over time (same hardware but different info)")
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "iot_id", unique = true, nullable = true)
+    @OneToOne(mappedBy = "beacon")
+    @MapsId
+    @JoinColumn(name = "id")
     private IOTEntity iot;
 
     @ApiModelProperty(value = "Eddystone's list of UIDs. It can take more values only if someone reconfigure an existing Beacon " +
             "without resetting the initial one!")
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "beacon_id", nullable = true)
     private Set<UIDEntity> uids = new HashSet<>();
 
     @ApiModelProperty(value = "Eddystone's list of TLMs. There should be at least one!")
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "beacon_id" , nullable = true)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "beacon_id", nullable = true)
     private Set<TLMEntity> tlms = new HashSet<>();
 
     @ApiModelProperty(value = "Eddystone's list of URLs. It can take more values only if someone reconfigure an existing Beacon " +
             "without resetting the initial one!")
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "beacon_id", nullable = true)
     private Set<URLEntity> urls = new HashSet<>();
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public IOTEntity getIot() {
         return iot;
@@ -77,4 +69,29 @@ public class EddystoneEntity {
     public void setUrls(Set<URLEntity> urls) {
         this.urls = urls;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @Override
+    public int hashCode(){
+        return this.id.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        return (
+                (object != null)
+                &&
+                (object instanceof EddystoneEntity)
+                &&
+                (this.id.equals(((EddystoneEntity) object).getId()))
+        );
+    }
+
 }

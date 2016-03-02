@@ -10,14 +10,11 @@ import javax.persistence.*;
 @Table(name = "uid")
 public class UIDEntity {
 
-    @ApiModelProperty(value = "The entity's unique id")
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
 
     @ApiModelProperty(value = "The beacon's eddystone namespace id")
     private String id_namespace;
 
+    @Id
     @ApiModelProperty(value = "The beacon's eddystone namespace instance")
     private String id_instance;
 
@@ -117,5 +114,21 @@ public class UIDEntity {
 
     public void setMajor(String major) {
         this.major = major;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        return (
+                (object != null)
+                        &&
+                        (object instanceof UIDEntity)
+                        &&
+                        (this.id_instance.equals(((UIDEntity) object).getId_instance()))
+        );
+    }
+
+    @Override
+    public int hashCode() {
+        return id_instance.hashCode();
     }
 }

@@ -1,16 +1,13 @@
 CREATE TABLE iot (
-  id INTEGER PRIMARY KEY AUTO_INCREMENT,
-  mac varchar(100),
+  mac varchar(100) PRIMARY KEY,
   type varchar(100)
 );
 CREATE TABLE beacon (
-  id INTEGER PRIMARY KEY AUTO_INCREMENT,
-  iot_id INTEGER
+  id varchar(100) PRIMARY KEY
 );
 CREATE TABLE uid (
-  id INTEGER PRIMARY KEY AUTO_INCREMENT,
-  id_namespace VARCHAR(40),
-  id_instance VARCHAR(40),
+  id_instance VARCHAR(40) PRIMARY KEY,
+  id_namespace VARCHAR(40) ,
   minor VARCHAR(40),
   major VARCHAR(40),
   uuid VARCHAR(40) ,
@@ -18,24 +15,22 @@ CREATE TABLE uid (
   mfg_id VARCHAR(40) ,
   service_uuid VARCHAR(40) ,
   rssi VARCHAR(40),
-  beacon_id INTEGER
+  beacon_id VARCHAR(40)
 );
 CREATE TABLE url (
-  id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  ids VARCHAR(40) PRIMARY KEY,
   uri VARCHAR(40),
-  ids VARCHAR(40) ,
   power VARCHAR(40),
   mfg_id VARCHAR(40) ,
   service_uuid VARCHAR(40) ,
   rssi VARCHAR(40),
-  beacon_id INTEGER
+  beacon_id VARCHAR(40)
 );
 CREATE TABLE tlm (
-  id INTEGER PRIMARY KEY AUTO_INCREMENT,
-  seconds VARCHAR(40),
+  seconds VARCHAR(40) PRIMARY KEY,
   voltage VARCHAR(40),
   temp VARCHAR(40),
   pdus VARCHAR(40),
-  beacon_id INTEGER
+  beacon_id VARCHAR(40)
 );
 

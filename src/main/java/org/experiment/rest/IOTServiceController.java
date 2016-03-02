@@ -9,7 +9,6 @@ import org.experiment.service.IIOTService;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -31,12 +30,13 @@ public class IOTServiceController extends BaseController{
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_XML_VALUE,
             produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<IOTResponse> recordIOT(@Valid @RequestBody IOT iot) {
+    public IOTResponse recordIOT(@Valid @RequestBody IOT iot) {
         System.out.println("Received an iot request!");
 
-        return tryWithRecovery(() ->
+        /*return tryWithRecovery(() ->
                 iotService.createUpdateIOT(iot),
-                IOTResponse.class);
+                IOTResponse.class);*/
+        return iotService.createUpdateIOT(iot);
     }
 
     @RequestMapping(value = "/isAlive/{name}",
