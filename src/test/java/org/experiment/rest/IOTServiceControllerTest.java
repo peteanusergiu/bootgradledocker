@@ -32,8 +32,6 @@ public class IOTServiceControllerTest extends AbstractRestServiceControllerTest 
 
     @Test
     public void testPersistIOTFull() throws Exception {
-        String profileName = activeProfile.getProfileName();
-        System.out.println(profileName);
         ResultActions andExpect = mvc.perform(
                 post("/soap/iot")
                         .contentType(MediaType.APPLICATION_XML_VALUE)
@@ -46,8 +44,6 @@ public class IOTServiceControllerTest extends AbstractRestServiceControllerTest 
     }
     @Test
     public void testPersistIOTTLMS() throws Exception {
-        String profileName = activeProfile.getProfileName();
-        System.out.println(profileName);
         ResultActions andExpect = mvc.perform(
                 post("/soap/iot")
                         .contentType(MediaType.APPLICATION_XML_VALUE)
