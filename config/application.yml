@@ -27,7 +27,7 @@ flyway:
    user: root
    password: ""
    driver: com.mysql.jdbc.Driver
-   uri: jdbc:mysql://localhost:3306/physicalweb
+   uri: jdbc:mysql://localhost:3306/physicalwebtest
    baselineOnMigrate: true
 jpa:
    bonecp:
@@ -42,7 +42,7 @@ jpa:
       acquireRetryDelayInMs: 1000
       connectionTimeoutInMs: 3000
       master:
-        jdbcUrl: jdbc:mysql://localhost:3306/physicalweb
+        jdbcUrl: jdbc:mysql://localhost:3306/physicalwebtest
         jdbcUsername: root
         jdbcPassword: ""
 ---
@@ -58,7 +58,7 @@ flyway:
    user: root
    password: password
    driver: com.mysql.jdbc.Driver
-   uri: jdbc:mysql://db:3306/test
+   uri: jdbc:mysql://mysqldb:3306/test
    baselineOnMigrate: true
 jpa:
    bonecp:
@@ -73,6 +73,6 @@ jpa:
       acquireRetryDelayInMs: 1000
       connectionTimeoutInMs: 3000
       master:
-        jdbcUrl: jdbc:mysql://db:3306/test
+        jdbcUrl: jdbc:mysql://mysqldb:3306/test
         jdbcUsername: root
         jdbcPassword: "password"

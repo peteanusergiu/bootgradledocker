@@ -1,0 +1,23 @@
+FROM node:4
+
+# User data directory, contains flows, config and nodes.
+#RUN mkdir /data
+
+# grunt package
+RUN npm install -g grunt-cli
+
+RUN git clone https://github.com/Freeboard/freeboard.git
+
+WORKDIR /freeboard
+
+# server.json contains server configuration
+COPY server.js .
+
+RUN npm install
+
+RUN grunt
+
+## User configuration directory volume
+#EXPOSE 80
+
+CMD ["npm", "start"]

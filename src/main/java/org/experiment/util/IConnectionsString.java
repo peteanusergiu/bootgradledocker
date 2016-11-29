@@ -9,7 +9,8 @@ public interface IConnectionsString {
     String HIBERNATE_DIALECT_MY_SQL = "org.hibernate.dialect.MySQLDialect";
 
     String SCHEMA_NAME_FLYWAY_INIT = "public";
-    String SCHEMA_NAME_TEST = "physicalweb";
+    String SCHEMA_NAME_TEST = "physicalwebtest";
+    String SCHEMA_NAME_INTEG_TEST = "test";
 
     String PACKAGES = "org.experiment.db.entities";
 }

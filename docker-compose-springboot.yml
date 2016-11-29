@@ -14,15 +14,15 @@ services:
       - mysqldb
     environment:
       SPRING_PROFILES_ACTIVE: integ
-  mongodb:
-    image: mongo
-    ports:
-        - "27017:27017" 
-    volumes_from:
-        - mongodata
-    # volumes:
-        # - /srv/docker/mongodb:/data/db
-    restart: always
+  # mongodb:
+    # image: mongo
+    # ports:
+        # - "27017:27017" 
+    # volumes_from:
+        # - mongodata
+    # # volumes:
+        # # - /srv/docker/mongodb:/data/db
+    # restart: always
 #mongoclient is not stable (use the local one or as a service version http://www.mongoclient.com:3000/)
   # mongoclient:
     # image: mongoclient/mongoclient:1.4.0
@@ -37,25 +37,17 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: test
-  nodered:
-    #image: nodered/node-red-docker
-    build: ./nodered
-    ports:
-      - "1880:1880"
-    volumes_from:
-      - nodereddata
-    depends_on:
-      - prototype
-    environment:
-      FLOWS: myFlows.json
-      #NODE_OPTIONS: "--max_old_space_size=128"
-  freeboard:
-      build: ./freeboard
-      ports:
-        - "80:80"
-      user: ${SHARED_USER_PID}
-#      volumes_from:
-#        - freeboarddata
+  # nodered:
+    # image: nodered/node-red-docker
+    # ports:
+      # - "1880:1880"
+    # volumes_from:
+      # - nodereddata
+    # depends_on:
+      # - prototype
+    # environment:
+      # FLOWS: myFlows.json
+      # #NODE_OPTIONS: "--max_old_space_size=128"
   gradledata:
     image: ubuntu
     volumes:
@@ -71,8 +63,3 @@ services:
     volumes:
       - "/persistence/nodered:/data"
     command: echo Persistence for NodeRed
-  #  freeboarddata:
-  #    image: ubuntu
-  #    volumes:
-  #      - "/persistence/freeboard:/data"
-  #    command: echo Persistence for Freeboard

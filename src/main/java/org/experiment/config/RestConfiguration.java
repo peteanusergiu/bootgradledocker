@@ -7,6 +7,7 @@ import org.experiment.prop.RestProperties;
 import org.experiment.rest.DBRestServiceController;
 import org.experiment.rest.IOTServiceController;
 import org.experiment.rest.JPARestServiceController;
+import org.experiment.rest.LoraServiceController;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +22,11 @@ public class RestConfiguration {
 	@Bean
 	public IOTServiceController iotRestServiceController() {
 		return new IOTServiceController();
+	}
+
+	@Bean
+	public LoraServiceController loraRestServiceController() {
+		return new LoraServiceController();
 	}
 
 	@Bean

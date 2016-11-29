@@ -6,13 +6,12 @@ package org.experiment.db.config;
 
 
 import com.jolbox.bonecp.BoneCPDataSource;
-import org.experiment.prop.bonecp.BoneCPProperties;
 import org.experiment.prop.JPAProperties;
+import org.experiment.prop.bonecp.BoneCPProperties;
 import org.experiment.util.EnvironmentUtilsLocal;
 import org.experiment.util.IConnectionsString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.boot.autoconfigure.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -52,20 +51,20 @@ public class ReleaseDataSourceConfig {
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(
-            EntityManagerFactoryBuilder factoryBuilder) {
-        return factoryBuilder.dataSource(dataSource()).packages("org.experiment.db.entities")
+            org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder factoryBuilder) {
+        return factoryBuilder.dataSource(dataSource()).packages(IConnectionsString.PACKAGES)
                 .properties(hibernateJPAProperties()).build();
     }
 
     @Bean
-    public EntityManagerFactoryBuilder entityManagerFactoryBuilder(
+    public org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder entityManagerFactoryBuilder(
             JpaVendorAdapter jpaVendorAdapter) {
 
         JpaProperties hibernateJPAProperties = new JpaProperties();
         hibernateJPAProperties.setProperties(hibernateJPAProperties());
 
-        EntityManagerFactoryBuilder builder = new EntityManagerFactoryBuilder(
-                jpaVendorAdapter, hibernateJPAProperties  , null);
+        org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder builder = new org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder(
+                jpaVendorAdapter, hibernateJPAProperties.getProperties()  , null);
         return builder;
     }
 
@@ -112,7 +111,7 @@ public class ReleaseDataSourceConfig {
     @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public SimpleJdbcInsert simpleJdbcInsert() {
-        return new SimpleJdbcInsert(jdbcTemplate()).withSchemaName(IConnectionsString.SCHEMA_NAME_TEST);
+        return new SimpleJdbcInsert(jdbcTemplate()).withSchemaName(IConnectionsString.SCHEMA_NAME_INTEG_TEST);
     }
 
     @Bean

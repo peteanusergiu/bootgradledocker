@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @ApiModel(description = "A base response containing only an error description. Most responses derive from this class.")
 public class BaseResponse implements IBaseResponse {
 
-    private ErrorDescription error;
+    protected ErrorDescription error;
 
     /**
      * Constructs a new {@code BaseResponse}.

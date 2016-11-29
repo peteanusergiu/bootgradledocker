@@ -1,0 +1,17 @@
+version: '2'
+services:
+  freeboard:
+    build: ./freeboard
+    ports:
+      - "8080:8080"
+      - "80:80"
+    user: ${SHARED_USER_PID}
+    volumes_from:
+      - freeboarddata
+    environment:
+      FLOWS: myFlows.json
+#  freeboarddata:
+#    image: ubuntu
+#    volumes:
+#      - "/persistence/freeboard:/data"
+#    command: echo Persistence for Freeboard
