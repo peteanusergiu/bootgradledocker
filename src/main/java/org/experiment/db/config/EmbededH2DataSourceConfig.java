@@ -26,7 +26,7 @@ import java.util.Map;
 @Configuration
 @Profile(EnvironmentUtilsLocal.DEV_H2)
 //@Import({DataBaseMigratorConfig.class})
-public class EmbededH2DataSourceConfig {
+public class EmbededH2DataSourceConfig extends CommonDataSourceConfig{
 
 //    @Bean(destroyMethod = "shutdown", initMethod = "start")
 //	@DependsOn(value="h2WebServer")

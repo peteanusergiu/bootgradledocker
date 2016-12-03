@@ -37,6 +37,13 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: test
+  redis:
+      image: redis:latest
+      ports:
+        - "6379:6379"
+      #command: redis-server --requirepass redis --appendonly yes
+      volumes_from:
+        - redisdata
   nodered:
     #image: nodered/node-red-docker
     build: ./nodered
@@ -71,6 +78,11 @@ services:
     volumes:
       - "/persistence/nodered:/data"
     command: echo Persistence for NodeRed
+  redisdata:
+      image: ubuntu
+      volumes:
+        - "/persistence/redis:/data"
+      command: echo Persistence for Redis
   #  freeboarddata:
   #    image: ubuntu
   #    volumes:

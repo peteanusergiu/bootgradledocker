@@ -1,5 +1,6 @@
 package org.experiment;
 
+import org.experiment.config.CacheConfig;
 import org.experiment.config.ExtensionConfig;
 import org.experiment.config.RestConfiguration;
 import org.experiment.config.ServiceConfiguration;
@@ -21,9 +22,10 @@ import org.springframework.web.servlet.DispatcherServlet;
 @EnableAutoConfiguration(exclude = {
 		DataSourceTransactionManagerAutoConfiguration.class,
 		DataSourceAutoConfiguration.class,
+//		!!disable this property when JPA(datasource) configuration is not needed (Ex. MongoDB)
 //		HibernateJpaAutoConfiguration.class
 })
-@Import({RestConfiguration.class, ServiceConfiguration.class, ExtensionConfig.class})
+@Import({RestConfiguration.class, ServiceConfiguration.class, ExtensionConfig.class, CacheConfig.class})
 public class Application {
 
 	@Log

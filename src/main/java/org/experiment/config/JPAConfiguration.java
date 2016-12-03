@@ -3,8 +3,8 @@ package org.experiment.config;
 import org.experiment.db.config.EmbededH2DataSourceConfig;
 import org.experiment.db.config.EmbededMySQLDataSourceConfig;
 import org.experiment.db.config.ReleaseDataSourceConfig;
-import org.experiment.prop.bonecp.BoneCPProperties;
 import org.experiment.prop.JPAProperties;
+import org.experiment.prop.bonecp.BoneCPProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -14,7 +14,8 @@ import org.springframework.context.annotation.Import;
  */
 @Configuration
 @EnableConfigurationProperties({JPAProperties.class, BoneCPProperties.class})
-@Import({EmbededH2DataSourceConfig.class, EmbededMySQLDataSourceConfig.class, ReleaseDataSourceConfig.class})
+@Import({EmbededH2DataSourceConfig.class, EmbededMySQLDataSourceConfig.class,
+        ReleaseDataSourceConfig.class})
 public class JPAConfiguration {
 
 //    @Bean

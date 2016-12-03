@@ -1,5 +1,17 @@
 spring:
     profiles: devh2
+    data.mongodb:
+      host: 192.168.99.100
+      #uri:
+      port: 27017
+      database: s4t
+#http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+cache:
+  redis:
+    host: 192.168.99.100
+    port: 6379
+    seconds2Expiration: 300
+
 server:
   port: 8082
 send:
@@ -17,6 +29,10 @@ flyway:
 ---
 spring:
     profiles: devmysql
+    data.mongodb:
+           host: mongodb
+           #uri:
+           port: 27017
 server:
   port: 8082
 send:
@@ -48,6 +64,10 @@ jpa:
 ---
 spring:
     profiles: integ
+    data.mongodb:
+           host: mongodb
+           #uri:
+           port: 27017
 server:
   port: 8082
 send:
