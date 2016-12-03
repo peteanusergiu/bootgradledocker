@@ -1,19 +1,18 @@
 package org.experiment.cache.config;
 
 import org.experiment.prop.RedisCacheProperties;
-import org.experiment.util.EnvironmentUtilsLocal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import redis.clients.jedis.JedisPoolConfig;
 
 import java.lang.reflect.Method;
 
@@ -22,19 +21,37 @@ import java.lang.reflect.Method;
  */
 
 @Configuration
-@Profile(EnvironmentUtilsLocal.DEV_H2)
 public class RedisConfiguration extends CachingConfigurerSupport {
 
 	@Autowired
 	protected RedisCacheProperties redisCacheProperties;
 
 	@Bean
-	public JedisConnectionFactory redisConnectionFactory() {
+	public JedisPoolConfig jedisPoolConfig() {
+		JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+		jedisPoolConfig.setMaxIdle(redisCacheProperties.getMaxIdle());
+		jedisPoolConfig.setMaxTotal(redisCacheProperties.getMaxTotal());
+		jedisPoolConfig.setMaxWaitMillis(redisCacheProperties.getMaxWait());
+
+		return jedisPoolConfig;
+	}
+
+	/*@Bean
+	public JedisPool jedisPool(JedisPoolConfig jedisPoolConfig) {
+		return new JedisPool(jedisPoolConfig, redisCacheProperties.getHost(),
+				redisCacheProperties.getPort(), redisCacheProperties.getMaxWait(), null);
+	}*/
+
+	@Bean
+	public JedisConnectionFactory jedisConnectionFactory(JedisPoolConfig jedisPoolConfig) {
 		JedisConnectionFactory redisConnectionFactory = new JedisConnectionFactory();
 
 		// Defaults
 		redisConnectionFactory.setHostName(redisCacheProperties.getHost());
 		redisConnectionFactory.setPort(redisCacheProperties.getPort());
+		redisConnectionFactory.setUsePool(true);
+
+		redisConnectionFactory.setPoolConfig(jedisPoolConfig);
 		return redisConnectionFactory;
 	}
 

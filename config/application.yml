@@ -1,17 +1,21 @@
 spring:
     profiles: devh2
     data.mongodb:
-      host: 192.168.99.100
+      #host: mongodb #running on docker
+      host: 192.168.99.100 #running on localhost but connecting to docker localhost
       #uri:
       port: 27017
       database: s4t
 #http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 cache:
   redis:
+#    host: redis
     host: 192.168.99.100
     port: 6379
     seconds2Expiration: 300
-
+    maxIdle: 50
+    maxTotal: 200
+    maxWait: 3000
 server:
   port: 8082
 send:
@@ -30,9 +34,21 @@ flyway:
 spring:
     profiles: devmysql
     data.mongodb:
-           host: mongodb
-           #uri:
-           port: 27017
+#      host: mongodb
+      host: 192.168.99.100
+      #uri:
+      port: 27017
+      database: s4t
+#http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+cache:
+  redis:
+#    host: redis
+    host: 192.168.99.100
+    port: 6379
+    seconds2Expiration: 300
+    maxIdle: 50
+    maxTotal: 200
+    maxWait: 3000
 server:
   port: 8082
 send:
@@ -43,7 +59,9 @@ flyway:
    user: root
    password: ""
    driver: com.mysql.jdbc.Driver
-   uri: jdbc:mysql://localhost:3306/physicalwebtest
+#   uri: jdbc:mysql://mysqldb:3306/physicalwebtest
+#   uri: jdbc:mysql://localhost:3306/physicalwebtest
+   uri: jdbc:mysql://192.168.99.100:3306/test
    baselineOnMigrate: true
 jpa:
    bonecp:
@@ -58,41 +76,54 @@ jpa:
       acquireRetryDelayInMs: 1000
       connectionTimeoutInMs: 3000
       master:
-        jdbcUrl: jdbc:mysql://localhost:3306/physicalwebtest
+#        jdbcUrl: jdbc:mysql://mysql:3306/physicalwebtest
+#        jdbcUrl: jdbc:mysql://localhost:3306/physicalwebtest
+        jdbcUrl: jdbc:mysql://192.168.99.100:3306/test
         jdbcUsername: root
-        jdbcPassword: ""
+#        jdbcPassword: ""
+        jdbcPassword: "password"
+
 ---
 spring:
-    profiles: integ
-    data.mongodb:
-           host: mongodb
-           #uri:
-           port: 27017
+  profiles: integ
+  data.mongodb:
+    host: mongodb
+    port: 27017
+    database: s4t
+#http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+cache:
+  redis:
+    host: redis
+    port: 6379
+    seconds2Expiration: 300
+    maxIdle: 50
+    maxTotal: 200
+    maxWait: 3000
 server:
   port: 8082
 send:
-   visitor: sergiu
-   message: welcome ${send.visitor}. This is how boot works!
-   enumValue: FIRST_ENUM_VALUE
+  visitor: sergiu
+  message: welcome ${send.visitor}. This is how boot works!
+  enumValue: FIRST_ENUM_VALUE
 flyway:
-   user: root
-   password: password
-   driver: com.mysql.jdbc.Driver
-   uri: jdbc:mysql://mysqldb:3306/test
-   baselineOnMigrate: true
+  user: root
+  password: password
+  driver: com.mysql.jdbc.Driver
+  uri: jdbc:mysql://mysqldb:3306/test
+  baselineOnMigrate: true
 jpa:
-   bonecp:
-      driverClass: com.mysql.jdbc.Driver
-      maxConnectionsPerPartition: 20
-      minConnectionsPerPartition: 10
-      partitionCount: 3
-      acquireIncrement: 10
-      statementsCacheSize: 50
-      releaseHelperThreads: 3
-      acquireRetryAttempts: 0
-      acquireRetryDelayInMs: 1000
-      connectionTimeoutInMs: 3000
-      master:
-        jdbcUrl: jdbc:mysql://mysqldb:3306/test
-        jdbcUsername: root
-        jdbcPassword: "password"
+  bonecp:
+    driverClass: com.mysql.jdbc.Driver
+    maxConnectionsPerPartition: 20
+    minConnectionsPerPartition: 10
+    partitionCount: 3
+    acquireIncrement: 10
+    statementsCacheSize: 50
+    releaseHelperThreads: 3
+    acquireRetryAttempts: 0
+    acquireRetryDelayInMs: 1000
+    connectionTimeoutInMs: 3000
+    master:
+      jdbcUrl: jdbc:mysql://mysqldb:3306/test
+      jdbcUsername: root
+      jdbcPassword: "password"

@@ -12,6 +12,8 @@ services:
       - "8082:8082"
     depends_on:
       - mysqldb
+      - mongodb
+      - redis
     environment:
       SPRING_PROFILES_ACTIVE: integ
   mongodb:
@@ -20,8 +22,6 @@ services:
         - "27017:27017" 
     volumes_from:
         - mongodata
-    # volumes:
-        # - /srv/docker/mongodb:/data/db
     restart: always
 #mongoclient is not stable (use the local one or as a service version http://www.mongoclient.com:3000/)
   # mongoclient:
@@ -38,12 +38,12 @@ services:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: test
   redis:
-      image: redis:latest
-      ports:
-        - "6379:6379"
-      #command: redis-server --requirepass redis --appendonly yes
-      volumes_from:
-        - redisdata
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    #command: redis-server --requirepass redis --appendonly yes
+    volumes_from:
+      - redisdata
   nodered:
     #image: nodered/node-red-docker
     build: ./nodered
@@ -57,10 +57,9 @@ services:
       FLOWS: myFlows.json
       #NODE_OPTIONS: "--max_old_space_size=128"
   freeboard:
-      build: ./freeboard
-      ports:
-        - "80:80"
-      user: ${SHARED_USER_PID}
+    build: ./freeboard
+    ports:
+      - "80:80"
 #      volumes_from:
 #        - freeboarddata
   gradledata:
@@ -79,10 +78,10 @@ services:
       - "/persistence/nodered:/data"
     command: echo Persistence for NodeRed
   redisdata:
-      image: ubuntu
-      volumes:
-        - "/persistence/redis:/data"
-      command: echo Persistence for Redis
+    image: ubuntu
+    volumes:
+      - "/persistence/redis:/data"
+    command: echo Persistence for Redis
   #  freeboarddata:
   #    image: ubuntu
   #    volumes:
