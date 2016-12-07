@@ -1,9 +1,11 @@
 package org.experiment.db.config;
 
 import com.jolbox.bonecp.BoneCPDataSource;
+import org.experiment.prop.JPAProperties;
 import org.experiment.prop.bonecp.BoneCPProperties;
 import org.experiment.util.EnvironmentUtilsLocal;
 import org.experiment.util.IConnectionsString;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
@@ -28,7 +30,11 @@ import java.util.Map;
  */
 @Configuration
 @Profile(EnvironmentUtilsLocal.DEV_MYSQL)
-public class EmbededMySQLDataSourceConfig extends CommonDataSourceConfig{
+public class EmbededMySQLDataSourceConfig {
+
+    @Autowired
+    protected JPAProperties jpaConnectorProperties;
+
 
 
 //    @Bean

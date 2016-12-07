@@ -1,7 +1,5 @@
 package org.experiment.db.config;
 
-import org.experiment.prop.JPAProperties;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -10,8 +8,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class CommonDataSourceConfig {
 
-    @Autowired
-    protected JPAProperties jpaConnectorProperties;
 
     /*@Bean
     public JdbcTemplate jdbcTemplate() {

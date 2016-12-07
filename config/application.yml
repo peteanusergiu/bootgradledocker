@@ -1,21 +1,24 @@
 spring:
-    profiles: devh2
-    data.mongodb:
-      #host: mongodb #running on docker
-      host: 192.168.99.100 #running on localhost but connecting to docker localhost
-      #uri:
-      port: 27017
-      database: s4t
+  data.mongodb:
+    host: 192.168.99.100 #running on localhost but connecting to docker localhost
+    #uri:
+    port: 27017
+    database: s4t
 #http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 cache:
   redis:
-#    host: redis
     host: 192.168.99.100
     port: 6379
     seconds2Expiration: 300
     maxIdle: 50
     maxTotal: 200
     maxWait: 3000
+amqp:
+  rabbitmq:
+    host: ${AMQP_HOST}
+    vhost: ${AMQP_VHOST}
+    username: ${AMQP_USERNAME}
+    password: ${AMQP_PASSWORD}
 server:
   port: 8082
 send:
@@ -23,46 +26,11 @@ send:
    message: welcome ${send.visitor}. This is how boot works!
    enumValue: FIRST_ENUM_VALUE
 flyway:
-   user: sa
-   paswword: ""
-   uri: jdbc:h2:mem:testdb;TRACE_LEVEL_SYSTEM_OUT=1
-#   uri: jdbc:h2:mem:testdb;AUTO_RECONNECT=TRUE;DATABASE_TO_UPPER=true;INIT=create schema if not exists public;TRACE_LEVEL_SYSTEM_OUT=1
-#   uri: jdbc:h2:file:///d:/Development/H2DB/db3;TRACE_LEVEL_SYSTEM_OUT=1
-   baselineOnMigrate: true
-
----
-spring:
-    profiles: devmysql
-    data.mongodb:
-#      host: mongodb
-      host: 192.168.99.100
-      #uri:
-      port: 27017
-      database: s4t
-#http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
-cache:
-  redis:
-#    host: redis
-    host: 192.168.99.100
-    port: 6379
-    seconds2Expiration: 300
-    maxIdle: 50
-    maxTotal: 200
-    maxWait: 3000
-server:
-  port: 8082
-send:
-   visitor: sergiu
-   message: welcome ${send.visitor}. This is how boot works!
-   enumValue: FIRST_ENUM_VALUE
-flyway:
-   user: root
-   password: ""
-   driver: com.mysql.jdbc.Driver
-#   uri: jdbc:mysql://mysqldb:3306/physicalwebtest
-#   uri: jdbc:mysql://localhost:3306/physicalwebtest
-   uri: jdbc:mysql://192.168.99.100:3306/test
-   baselineOnMigrate: true
+  user: root
+  password: password
+  driver: com.mysql.jdbc.Driver
+  uri: jdbc:mysql://192.168.99.100:3306/test
+  baselineOnMigrate: true
 jpa:
    bonecp:
       driverClass: com.mysql.jdbc.Driver
@@ -76,20 +44,63 @@ jpa:
       acquireRetryDelayInMs: 1000
       connectionTimeoutInMs: 3000
       master:
-#        jdbcUrl: jdbc:mysql://mysql:3306/physicalwebtest
 #        jdbcUrl: jdbc:mysql://localhost:3306/physicalwebtest
         jdbcUrl: jdbc:mysql://192.168.99.100:3306/test
         jdbcUsername: root
-#        jdbcPassword: ""
         jdbcPassword: "password"
+
+---
+spring:
+    profiles: devh2
+    data.mongodb:
+      #host: localhost #running on localhost but connecting to docker localhost
+      #port: 27017
+      #database: s4t
+#http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+cache:
+  redis:
+    #inherits from non-profile configuration (see above)
+    #host: 192.168.99.100
+server:
+  #inherits from non-profile configuration (see above)
+  #port: 8082
+flyway:
+   user: sa
+   paswword: ""
+   uri: jdbc:h2:mem:testdb;TRACE_LEVEL_SYSTEM_OUT=1
+#   uri: jdbc:h2:mem:testdb;AUTO_RECONNECT=TRUE;DATABASE_TO_UPPER=true;INIT=create schema if not exists public;TRACE_LEVEL_SYSTEM_OUT=1
+#   uri: jdbc:h2:file:///d:/Development/H2DB/db3;TRACE_LEVEL_SYSTEM_OUT=1
+
+---
+spring:
+    profiles: devmysql
+    data.mongodb:
+#      host: 192.168.99.100
+#inherits from non-profile configuration (see above)
+#http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+cache:
+  redis:
+#    host: 192.168.99.100
+#inherits from non-profile configuration (see above)
+server:
+#  port: 8082
+#inherits from non-profile configuration (see above)
+flyway:
+#   uri: jdbc:mysql://localhost:3306/physicalwebtest
+#   password: ""
+#inherits from non-profile configuration (see above)
+jpa:
+   bonecp:
+#inherits from non-profile configuration (see above)
+      master:
+#        jdbcUrl: jdbc:mysql://localhost:3306/physicalwebtest
+#       jdbcPassword: ""
 
 ---
 spring:
   profiles: integ
   data.mongodb:
     host: mongodb
-    port: 27017
-    database: s4t
 #http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 cache:
   redis:
@@ -100,30 +111,16 @@ cache:
     maxTotal: 200
     maxWait: 3000
 server:
-  port: 8082
-send:
-  visitor: sergiu
-  message: welcome ${send.visitor}. This is how boot works!
-  enumValue: FIRST_ENUM_VALUE
+#  port: 8082
 flyway:
-  user: root
-  password: password
-  driver: com.mysql.jdbc.Driver
+#  user: root
+#  password: password
+#  driver: com.mysql.jdbc.Driver
   uri: jdbc:mysql://mysqldb:3306/test
-  baselineOnMigrate: true
+#  baselineOnMigrate: true
 jpa:
   bonecp:
-    driverClass: com.mysql.jdbc.Driver
-    maxConnectionsPerPartition: 20
-    minConnectionsPerPartition: 10
-    partitionCount: 3
-    acquireIncrement: 10
-    statementsCacheSize: 50
-    releaseHelperThreads: 3
-    acquireRetryAttempts: 0
-    acquireRetryDelayInMs: 1000
-    connectionTimeoutInMs: 3000
     master:
       jdbcUrl: jdbc:mysql://mysqldb:3306/test
-      jdbcUsername: root
-      jdbcPassword: "password"
+#      jdbcUsername: root
+#      jdbcPassword: "password"

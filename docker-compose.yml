@@ -16,6 +16,30 @@ services:
       - redis
     environment:
       SPRING_PROFILES_ACTIVE: integ
+      AMQP_HOST: rabbitmq
+      AMQP_VHOST: s4t-rabbitmq
+      AMQP_USERNAME: s4tusername
+      AMQP_PASSWORD: s4tpassword
+  rabbitmq:
+    #    image: rabbitmq
+    image: rabbitmq:3-management # management plugin installed and enabled by default
+    environment:
+      - RABBITMQ_DEFAULT_VHOST=s4t-rabbitmq
+      - RABBITMQ_DEFAULT_USER=s4tusername
+      - RABBITMQ_DEFAULT_PASS=s4tpassword
+    hostname: s4t-rabbitmq
+    ports:
+      - 5672:5672 # port for the daemon API, can be exposed to public
+      - 15672:15672  # port for the Management interface
+    restart: always
+    volumes_from:
+      - rabbitmqdata
+    #if image: rabbitmq is used instead of rabbitmq:3-management then management(plugin)needs to be activated
+    #docker-compose exec springbootprototype_rabbitmq_1 rabbitmq-plugins enable rabbitmq_management
+    #    entrypoint:
+    #        - rabbitmq-plugins
+    #        - enable
+    #        - rabbitmq_management
   mongodb:
     image: mongo
     ports:
@@ -82,6 +106,11 @@ services:
     volumes:
       - "/persistence/redis:/data"
     command: echo Persistence for Redis
+  rabbitmqdata:
+      image: ubuntu
+      volumes:
+        - "/persistence/rabbitq:/var/lib/rabbitmq"
+      command: echo Persistence for RabbitMQ
   #  freeboarddata:
   #    image: ubuntu
   #    volumes:

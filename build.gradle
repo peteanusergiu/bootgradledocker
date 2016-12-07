@@ -40,18 +40,23 @@ targetCompatibility = 1.8
 
 dependencies {
 	compile("org.springframework.boot:spring-boot-starter-web")
-	compile("org.springframework.boot:spring-boot-starter-data-jpa")
-
+//polyglot persistence
     compile("org.springframework.boot:spring-boot-starter-data-mongodb")
     compile("org.springframework.boot:spring-boot-starter-redis")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
     compile("org.hibernate:hibernate-validator")
     compile("mysql:mysql-connector-java")
+    compile 'com.jolbox:bonecp:0.8.0.RELEASE'
+    compile "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final"
+    compile 'org.flywaydb:flyway-core'
+    compile("com.h2database:h2")
+
+//amqp - message broker based on rabbitmq
+    compile("org.springframework.boot:spring-boot-starter-amqp")
+    //    compile("com.rabbitmq:amqp-client:4.0.0")
+
     //compile("org.springframework.boot:spring-boot-starter-jetty")
     compile 'org.slf4j:slf4j-api:1.7.12'
-    compile 'com.jolbox:bonecp:0.8.0.RELEASE'
-    compile 'org.flywaydb:flyway-core'
-    compile "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final"
-    compile("com.h2database:h2")
 
     compile("com.fasterxml.jackson.datatype:jackson-datatype-joda")
 
@@ -91,6 +96,10 @@ task showMeCache << {
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.9'
+}
+
+processResources {
+    expand(project.properties)
 }
 
 bootRun {

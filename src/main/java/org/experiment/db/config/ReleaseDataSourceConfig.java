@@ -6,9 +6,11 @@ package org.experiment.db.config;
 
 
 import com.jolbox.bonecp.BoneCPDataSource;
+import org.experiment.prop.JPAProperties;
 import org.experiment.prop.bonecp.BoneCPProperties;
 import org.experiment.util.EnvironmentUtilsLocal;
 import org.experiment.util.IConnectionsString;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.context.annotation.Bean;
@@ -29,7 +31,11 @@ import java.util.Map;
 
 @Configuration
 @Profile(EnvironmentUtilsLocal.INTEGRATION)
-public class ReleaseDataSourceConfig extends CommonDataSourceConfig{
+public class ReleaseDataSourceConfig {
+
+    @Autowired
+    protected JPAProperties jpaConnectorProperties;
+
 
 //    @Bean
 //    public JPAProperties jpaConnectorProperties(){

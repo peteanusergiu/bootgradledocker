@@ -4,10 +4,7 @@ import org.experiment.config.profile.ProfileDEVH2Configuration;
 import org.experiment.config.profile.ProfileDEVMYSQLConfiguration;
 import org.experiment.config.profile.ProfilePROTOTYPEConfiguration;
 import org.experiment.prop.RestProperties;
-import org.experiment.rest.DBRestServiceController;
-import org.experiment.rest.IOTServiceController;
-import org.experiment.rest.JPARestServiceController;
-import org.experiment.rest.LoraServiceController;
+import org.experiment.rest.*;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,5 +34,10 @@ public class RestConfiguration {
 	@Bean
 	public JPARestServiceController jpaRestServiceController() {
 		return new JPARestServiceController();
+	}
+
+	@Bean
+	public RabbitMQServiceController rabbitMQServiceController() {
+		return new RabbitMQServiceController();
 	}
 }

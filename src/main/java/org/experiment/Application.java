@@ -1,9 +1,6 @@
 package org.experiment;
 
-import org.experiment.config.CacheConfig;
-import org.experiment.config.ExtensionConfig;
-import org.experiment.config.RestConfiguration;
-import org.experiment.config.ServiceConfiguration;
+import org.experiment.config.*;
 import org.experiment.extensions.annotation.Log;
 import org.slf4j.Logger;
 import org.springframework.boot.SpringApplication;
@@ -25,7 +22,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 //		!!disable this property when JPA(datasource) configuration is not needed (Ex. MongoDB)
 //		HibernateJpaAutoConfiguration.class
 })
-@Import({RestConfiguration.class, ServiceConfiguration.class, ExtensionConfig.class, CacheConfig.class})
+@Import({RestConfiguration.class, ServiceConfiguration.class, ExtensionConfig.class, CacheConfig.class, AMQPConfig.class})
 public class Application {
 
 	@Log
